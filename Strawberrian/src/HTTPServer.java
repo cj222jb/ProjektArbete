@@ -6,7 +6,6 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -18,15 +17,23 @@ import java.io.OutputStream;
 
 public class HTTPServer {
 
+/*Mikkes stationära*/
+//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+//
+/*Mikkes laptop*/
+//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
-    private static String webFolder = "../Cranberrian";
-    private static String rootFolder = "../root";
+/*Raspberry*/
+    private static String webFolder = "Lingonberrian:/home/Gooseberrian/ProjektArbete/Cranberrian";
+    private static String rootFolder = "Lingonberrian:/home/Gooseberrian/ProjektArbete/root";
 
-    private static  File fileIndex = new File (webFolder+"/index.html");
+    private static  File fileIndex = new File (webFolder+"\\index.html");
 
     private static int port = 8080;
     public static void main(String[] args) throws Exception {
-        System.out.println("Strawberrian up!");
+        System.out.println("Up!");
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new GetHandler());
         server.createContext("/static", new StaticFileServer(webFolder));
