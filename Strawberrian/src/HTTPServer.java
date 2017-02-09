@@ -18,25 +18,26 @@ import java.io.OutputStream;
 public class HTTPServer {
 
 /*Mikkes stationära*/
-//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 //
 /*Mikkes laptop*/
 //    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 /*Raspberry*/
-    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
-    private static  File fileIndex = new File (webFolder+"\\index.html");
+    private static  File fileIndex = new File (webFolder+"/index.html");
 
     private static int port = 8080;
     public static void main(String[] args) throws Exception {
         System.out.println("Up!");
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new GetHandler());
-        server.createContext("/static", new StaticFileServer(webFolder));
+        server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
+        server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
         server.setExecutor(null); // creates a default executor
         server.start();
     }
@@ -48,8 +49,7 @@ public class HTTPServer {
             h.add("Content-Type", "text/html");
 
             File[] fileDir = new File (rootFolder).listFiles();
-            showFiles(fileDir,webFolder);
-
+            showFiles(fileDir);
 
             byte [] bytearray  = new byte [(int)fileIndex.length()];
             FileInputStream fis = new FileInputStream(fileIndex);
@@ -62,23 +62,24 @@ public class HTTPServer {
             os.close();
         }
     }
-    public static void showFiles(File[] files, String filename){
+    public static void showFiles(File[] files){
         //Shows every file and folder of requested address as a HTML index list.
         PrintWriter writer;
         try {
-            writer = new PrintWriter(filename+"/index.html","UTF-8" );
+            writer = new PrintWriter(webFolder+"/index.html","UTF-8" );
 
-          writer.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/>\"> </head> <body><h1>");
-//            writer.println("<HTML><html><head><script src=\"/static\"></script></head> <body><h1>");
+          writer.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"/css/>\"></head><body>");
+
             for (File file : files) {
                 if (file.isDirectory()) {
                     writer.println(("<li class=\"dir\">"  + file.getName()+"</li>"));
-                    showFiles(file.listFiles(), filename); // Calls same method again.
+                    showFiles(file.listFiles()); // Calls same method again.
                 } else {
                     writer.println("<li class=\"file\">"  + file.getName()+"</li>");
                 }
             }
-            writer.println("</h1></body></html>");
+            writer.println("<script src=\"/js\"></script>");
+            writer.println("</body></html>");
             writer.close();
         } catch (FileNotFoundException e) {
 

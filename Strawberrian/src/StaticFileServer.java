@@ -15,15 +15,17 @@ public class StaticFileServer implements HttpHandler {
 
 
     private static String webFolder;
-    public StaticFileServer(String webFolder) {
+    private final String fileName;
+
+    public StaticFileServer(String webFolder, String fileName) {
+        this.fileName = fileName;
         this.webFolder = webFolder;
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String fileId = exchange.getRequestURI().getPath();
-        File file =  new File (webFolder+"/style.css");
-        System.out.println("hej");
+        File file =  new File (webFolder+fileName);
         if (file == null) {
             String response = "Error 404 File not found.";
             exchange.sendResponseHeaders(404, response.length());
