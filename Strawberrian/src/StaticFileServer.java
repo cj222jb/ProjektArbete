@@ -22,7 +22,7 @@ public class StaticFileServer implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String fileId = exchange.getRequestURI().getPath();
-        File file =  new File (webFolder+"\\style.css");
+        File file =  new File (webFolder+"/style.css");
         System.out.println("hej");
         if (file == null) {
             String response = "Error 404 File not found.";
