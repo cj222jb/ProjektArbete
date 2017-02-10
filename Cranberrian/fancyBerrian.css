@@ -1,7 +1,7 @@
 body{
     background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-330670.jpg") left top ;
     font-family: 'Prompt', sans-serif;
-
+    color: #213152;
 }
 header{
     background-image: url("http://www.logoeps.net/wp-content/uploads/2016/12/raspberrypi-logo.png");
@@ -26,7 +26,7 @@ main{
     margin-left: 20%;
     margin-top: 5%;
     float: left;
-    background-color:#C4CCD9;
+    background-color:#EBF2F9;
     border-style: solid;
     border-width: 2px;
     border-color: #9EAFC9;
@@ -36,34 +36,50 @@ main{
 li{
 
     list-style: none;
+    padding-bottom: 5px;
     font-size: 25px;
 }
 #Content {
-    color: #213152;
+    text-align: left;
+    margin-left: 5px;
+    margin-right: 50px;
+
 
 }
-#Content li{
+li{
+    color: #213152;
     border-style: solid;
     border-width: 1px;
     border-color: #9EAFC9;
 }
-#Upload{
-    text-align: right;
+li:hover{
+    transition-duration: 0.2s;
+    color:#9EAFC9;
+    border-color: #213152;
+    border-width: 3px;
 }
+#Upload{
+    text-align: left;
+
+}
+
 button{
-    color:dimgray;
+    color:#EBF2F9;
     font-size: 15px;
     text-decoration:none;
-    background-color: lightgray;
+    background-color: #213152;
     border-style: none;
-    height:50px;
+    height:40px;
     width:100%;
     margin-bottom: 1%;
 }
 button:hover{
     transition-duration: 0.2s;
-    color:whitesmoke;
-    background: dimgray;
+    color:#213152;
+    background: #EBF2F9;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #9EAFC9;
 }
 #answerForm button{
     width:65px;
