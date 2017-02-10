@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Strawberrian_jar</output-path>
     <root id="archive" name="Strawberrian.jar">
       <element id="module-output" name="Strawberrian" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/jsoup-1.10.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
