@@ -6,6 +6,10 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -17,17 +21,17 @@ import java.io.OutputStream;
 
 public class HTTPServer {
 
-/*Mikkes stationära*/
-    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+    /*Mikkes stationära*/
+//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 //
 /*Mikkes laptop*/
 //    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 /*Raspberry*/
-//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
 
@@ -49,7 +53,7 @@ public class HTTPServer {
             h.add("Content-Type", "text/html");
 
             File[] fileDir = new File (rootFolder).listFiles();
-            showFiles(fileDir);
+            addFileDirToHTML(fileDir);
 
             byte [] bytearray  = new byte [(int)fileIndex.length()];
             FileInputStream fis = new FileInputStream(fileIndex);
@@ -62,31 +66,35 @@ public class HTTPServer {
             os.close();
         }
     }
-    public static void showFiles(File[] files){
-        //Shows every file and folder of requested address as a HTML index list.
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter(webFolder+"/index.html","UTF-8" );
 
-          writer.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"/css/>\"></head><body>");
+    private static void addFileDirToHTML(File[] fileArr) throws IOException {
 
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    writer.println(("<li class=\"dir\">"  + file.getName()+"</li>"));
-                    showFiles(file.listFiles()); // Calls same method again.
-                } else {
-                    writer.println("<li class=\"file\">"  + file.getName()+"</li>");
-                }
+        Document doc = Jsoup.parse(fileIndex,"UTF-8","");
+        Element content = doc.getElementById("Content");
+        content.empty();
+        int dirCounter = 0, fileCounter = 0;
+        for (File file : fileArr) {
+            if (file.isDirectory()) {
+                Element liTag = doc.createElement("li");
+                Element aTag = doc.createElement("a");
+                aTag.append(file.getName());
+                liTag.appendChild(aTag);
+                liTag.attr("id","Dir"+dirCounter++);
+                content.appendChild(liTag);
             }
-            writer.println("<script src=\"/js\"></script>");
-            writer.println("</body></html>");
-            writer.close();
-        } catch (FileNotFoundException e) {
-
-
-        } catch (UnsupportedEncodingException e) {
-
         }
+        for (File file : fileArr) {
+            if (!file.isDirectory()) {
+                Element liTag = doc.createElement("li");
+                Element aTag = doc.createElement("a");
+                aTag.append(file.getName());
+                liTag.appendChild(aTag);
+                liTag.attr("id","File"+dirCounter++);
+                content.appendChild(liTag);
+            }
+        }
+        PrintWriter out = new PrintWriter(new FileWriter(fileIndex));
+        out.print(doc);
+        out.close();
     }
-
 }

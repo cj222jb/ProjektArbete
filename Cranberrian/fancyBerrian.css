@@ -1,196 +1,79 @@
-*{
-margin:0px;
-padding:0px
-}
-img{border:0px}
-html{
-width:100%;
-height:100%;
-}
 body{
-width:766px;
-margin:auto
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-330670.jpg") left top ;
+    font-family: 'Prompt', sans-serif;
+
 }
-#site{
-width:766px;
-background-image:url(images/bg.gif);
-background-position:top left;
-background-repeat:repeat-y;
-padding:35px 0 0 0;
-position:relative;
-float:left
+header{
+    background-image: url("http://www.logoeps.net/wp-content/uploads/2016/12/raspberrypi-logo.png");
+    margin-left: 2%;
+    margin-top:2%;
+    height: 100px;
+    width: 80px;
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
 }
-.menu{
-display:block;
-margin:42px 0 0 0;
-width:215px;
+footer{
+
+    width:100%;
+    height: 420px;
 }
-.menu li{
-list-style-type:none;
-float:left
+main{
+
+    overflow: hidden;
+    min-height: 750px;
+    width:60%;
+    margin-left: 20%;
+    margin-top: 5%;
+    float: left;
+    background-color:#C4CCD9;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #9EAFC9;
+    
 }
-.menu img{
-float:left
+
+li{
+
+    list-style: none;
+    font-size: 25px;
 }
-.left{
-float:left;
-width:239px
+#Content {
+    color: #213152;
+
 }
-.right{
-float:left;
-margin:0 0 0 3px;
-width:524px
+#Content li{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #9EAFC9;
 }
-.search{
-padding:0 0 31px 41px;
-float:left;
+#Upload{
+    text-align: right;
 }
-.search input{
-background-image:url(images/input.gif);
-background-position:top left;
-background-repeat:no-repeat;
-border:0px;
-height:20px;
-width:104px;
-padding:1px 0 0 5px;
-float:left;
+button{
+    color:dimgray;
+    font-size: 15px;
+    text-decoration:none;
+    background-color: lightgray;
+    border-style: none;
+    height:50px;
+    width:100%;
+    margin-bottom: 1%;
 }
-.search button{
-background-image:url(images/go.gif);
-background-position:top left;
-background-repeat:no-repeat;
-border:0px;
-cursor:hand;
-cursor:pointer;
-width:27px;
-height:20px;
-float:rigth;
-margin:0 0 0 7px
+button:hover{
+    transition-duration: 0.2s;
+    color:whitesmoke;
+    background: dimgray;
 }
-.small{
-position:absolute;
-top:35px;
-right:6px;
+#answerForm button{
+    width:65px;
+    font-size: 15px;
+    height:30px;
 }
-.small img{
-margin:0 14px 0 13px
+input{
+    color:dimgray;
+    background: whitesmoke;
+    width:200px;
+    font-size: 15px;
+    height:30px;
 }
-.wrap{
-padding:0 0 14px 0;
-margin:17px 0 14px 22px;
-border-bottom:1px solid #E5E5E5;
-float:left;
-}
-*html .wrap{
-margin:17px 0 14px 12px;
-}
-.img{
-float:left;
-margin:0 7px 0 3px
-}
-.style1{
-width:242px;
-font-family:Tahoma;
-font-size:11px;
-color:#616161;
-border-right:1px solid #E5E5E5;
-float:left;
-padding:0 10px 0 0;
-}
-.more{
-display:block;
-float:right;
-background-image:url(images/arrows.gif);
-background-position:0px 5px;
-background-repeat:no-repeat;
-padding:0 0 0 15px;
-font-family:Tahoma;
-font-size:10px;
-color:#A22F17;
-font-weight:bold;
-text-decoration:none;
-clear:both;
-margin:10px 0 0 0;
-}
-.style2{
-width:220px;
-font-family:Tahoma;
-font-size:11px;
-color:#616161;
-float:left;
-padding:0 10px 0 15px
-}
-.style2 span, .news span{
-color:#A22F17;
-font-weight:bold
-}
-.wrap2{
-padding:0 0 18px 0;
-margin:0 0 14px 22px;
-border-bottom:1px solid #E5E5E5;
-float:left
-}
-*html .wrap2{
-margin:0 0 18px 12px;
-}
-.news{
-border-bottom:1px solid #E5E5E5;
-margin:8px 0 0 0;
-}
-.news p{
-padding:10px 0 7px 0
-}
-.news a{
-display:inline;
-}
-.pad{
-margin:0 0 7px 0
-}
-.list li{
-list-style-type:none;
-float:left;
-padding:7px 0 0 0
-}
-.list a{
-font-family:Tahoma;
-font-size:11px;
-color:#A22F17;
-text-decoration:underline;
-display:block;
-background-image:url(images/arrow.gif);
-background-position:0px 5px;
-background-repeat:no-repeat;
-padding:0 0 0 10px
-}
-.list a:visited{text-decoration:underline}
-.list a:hover{text-decoration:none}
-#footer{
-float:left;
-height:80px;
-background-image:url(images/bg.gif);
-background-position:top left;
-background-repeat:no-repeat;
-position:relative
-}
-#footer img {
-margin:-2px 72px 0 76px;
-float:left
-}
-.copy{
-width:503px;
-padding:30px 0 0 0;
-float:left;
-text-align:center;
-font-family:Tahoma;
-font-size:9px;
-color:#515151
-}
-.copy a{
-font-family:Tahoma;
-font-size:9px;
-color:#7F7F7F;
-text-decoration:none;
-display:inline-block;
-padding:0 10px 0 10px
-}
-#content .inner_copy {border:0;color:#f00;float:left;width:50%!important;margin:-202px 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:12px}
