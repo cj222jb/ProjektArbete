@@ -1,8 +1,5 @@
 
 
-function addDirListener() {
-    
-}
 function addFileListener() {
 
     var files = document.getElementById("Files").childNodes;
@@ -11,9 +8,19 @@ function addFileListener() {
         file.addEventListener("click",function () {
             console.log(file.firstChild.innerHTML);
         });
-        file.addEventListener("right-click",function () {
-            console.log(file.firstChild.innerHTML+" Heeeeeej");
-        });
+
     });
 }
+function addFolderListener() {
+    var folders = document.getElementById("Folders").childNodes;
+    NodeList.prototype.forEach = Array.prototype.forEach
+    folders.forEach(function(folder){
+        folder.addEventListener("click",function () {
+            console.log(folder.firstChild.innerHTML);
+        });
+
+    });
+
+}
+addFolderListener();
 addFileListener();

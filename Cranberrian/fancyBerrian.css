@@ -1,79 +1,94 @@
 body{
-    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-330670.jpg") left top ;
+    background: url("/images/background.jpg") left top ;
     font-family: 'Prompt', sans-serif;
     color: #213152;
 }
 header{
-    background-image: url("http://www.logoeps.net/wp-content/uploads/2016/12/raspberrypi-logo.png");
+    background-image: url("/images/logo2.png");
     margin-left: 2%;
     margin-top:2%;
     height: 100px;
     width: 80px;
-    background-size:     cover;                      /* <------ */
+    background-size:     cover;
     background-repeat:   no-repeat;
     background-position: center center;
 }
-footer{
 
-    width:100%;
-    height: 420px;
-}
 main{
-
     overflow: hidden;
     min-height: 750px;
     width:60%;
-    margin-left: 20%;
+    min-width: 980px;
     margin-top: 5%;
-    float: left;
+    margin-left: 20%;
+    margin-right: 20%;
     background-color:#EBF2F9;
     border-style: solid;
     border-width: 2px;
     border-color: #9EAFC9;
     
 }
-
+#mainHeader{
+    font-size: 50px;
+    padding-left: 10px;
+}
+#Folders {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#Files {
+    padding-left: 42px;
+    padding-right: 10px;
+}
 li{
-
+    padding-left: 40px;
+    font-size: 30px;
     list-style: none;
-    padding-bottom: 5px;
-    font-size: 25px;
-}
-#Content {
-    text-align: left;
-    margin-left: 5px;
-    margin-right: 50px;
-
-
-}
-li{
     color: #213152;
-    border-style: solid;
+    border-bottom: groove;
     border-width: 1px;
     border-color: #9EAFC9;
 }
+
 li:hover{
     transition-duration: 0.2s;
     color:#9EAFC9;
     border-color: #213152;
     border-width: 3px;
+    cursor: pointer;
+}
+#Folders li{
+    height: 60px;
+    line-height: 60px;
+    background: url('/images/folder_32.png') no-repeat left;
+
+}
+#Files li{
+    height: 40px;
+    line-height: 40px;
+    background: url('/images/file_32.png') no-repeat left;
+
 }
 #Upload{
-    text-align: left;
 
+    text-align: center;
 }
 
-button{
+ button{
+     float: right;
+     margin-right: 10px;
+     margin-top: 10px;
     color:#EBF2F9;
     font-size: 15px;
     text-decoration:none;
     background-color: #213152;
     border-style: none;
-    height:40px;
-    width:100%;
-    margin-bottom: 1%;
+    height:50px;
+    width:160px;
 }
 button:hover{
+    cursor: pointer;
     transition-duration: 0.2s;
     color:#213152;
     background: #EBF2F9;
@@ -81,15 +96,12 @@ button:hover{
     border-width: 1px;
     border-color: #9EAFC9;
 }
-#answerForm button{
-    width:65px;
-    font-size: 15px;
-    height:30px;
-}
-input{
-    color:dimgray;
-    background: whitesmoke;
-    width:200px;
-    font-size: 15px;
-    height:30px;
+
+footer{
+    opacity: 0.6;
+    font-size: 20px;
+    color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
