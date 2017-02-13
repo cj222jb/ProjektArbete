@@ -12,6 +12,7 @@ function addFileListener() {
 
     });
 }
+
 function addFolderListener() {
     var folders = document.getElementById("Folders").childNodes;
     NodeList.prototype.forEach = Array.prototype.forEach
@@ -24,6 +25,5 @@ function addFolderListener() {
     });
 
 }
-
 addFolderListener();
 addFileListener();
