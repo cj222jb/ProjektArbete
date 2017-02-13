@@ -7,7 +7,7 @@ function addFileListener() {
     files.forEach(function(file){
         file.addEventListener("dblclick",function () {
             console.log(file.firstChild.innerHTML);
-           window.location.href =file.firstChild.innerHTML;
+            window.location.href =window.location.pathname +"/"+file.firstChild.innerHTML;
         });
 
     });
@@ -19,7 +19,14 @@ function addFolderListener() {
     folders.forEach(function(folder){
         folder.addEventListener("dblclick",function () {
             console.log(folder.firstChild.innerHTML);
-            httpGetAsync("/"+file.firstChild.innerHTML);
+            var path = window.location.pathname;
+            console.log(path);
+            if(path === "/"){
+            window.location.href =path + folder.firstChild.innerHTML;
+            }
+            else{
+                window.location.href =path +"/"+ folder.firstChild.innerHTML;
+            }
         });
 
     });

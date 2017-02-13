@@ -73,25 +73,23 @@ activeTag{
 
 }
 #upload{
-    float:right;
     text-align: center;
-    margin-right: 10px;
+    margin-left: 10px;
     margin-top: 10px;
 }
-#downloadall{
+#download{
     margin-left: 10px;
     margin-top: 10px;
     text-align: center;
 }
 
  button{
-
     color:#EBF2F9;
     font-size: 15px;
     text-decoration:none;
     background-color: #213152;
     border-style: none;
-    height:50px;
+    height:30px;
     width:160px;
 }
 button:hover{
