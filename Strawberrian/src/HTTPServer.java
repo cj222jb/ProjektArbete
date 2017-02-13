@@ -21,8 +21,8 @@ import java.io.OutputStream;
 public class HTTPServer {
 
     /*Mikkes stationära*/
-    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 //
 /*Mikkes laptop*/
@@ -30,8 +30,8 @@ public class HTTPServer {
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 /*Raspberry*/
-//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
     private static   HttpServer server;
@@ -45,9 +45,7 @@ public class HTTPServer {
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
         server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
-        server.createContext("/home", new HTMLHandler());
-        server.createContext("/", new GetHandler());
-
+        server.createContext("/", new HTMLHandler());
         pushPictures();
         server.setExecutor(null); // creates a default executor
         server.start();
@@ -95,11 +93,11 @@ public class HTTPServer {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
                 aTag.append(dir.getName());
+                aTag.attr("download");
                 liTag.appendChild(aTag);
                 liTag.attr("id","Dir"+dirCounter++);
                 liTag.attr("class", "Dir");
                 dirContent.appendChild(liTag);
-                server.createContext("/"+dir.getName(), new StaticFileServer(webFolder,"index/html"));
             }
         }
 
@@ -108,10 +106,13 @@ public class HTTPServer {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
                 aTag.append(file.getName());
+                aTag.attr("download","download");
                 liTag.appendChild(aTag);
                 liTag.attr("id","File"+fileCounter++);
                 liTag.attr("class","File");
                 fileContent.appendChild(liTag);
+
+                server.createContext("/"+file.getName(), new GETHandler(file.getName()));
             }
         }
         PrintWriter out = new PrintWriter(new FileWriter(fileIndex));
@@ -155,46 +156,31 @@ public class HTTPServer {
         }
 
     }
-    static class GetHandler implements HttpHandler {
+
+    static class GETHandler implements HttpHandler { String name;
+        public GETHandler(String name) {
+            this.name = name;
+        }
+
         public void handle(HttpExchange exchange) throws IOException {
-            String requestedFile = currentFolder+exchange.getRequestURI().toString();
-            System.out.println(requestedFile);
-            exchange.sendResponseHeaders(200, 0);
-            OutputStream output = exchange.getResponseBody();
-            File file = new File (requestedFile);
-            FileInputStream fs = new FileInputStream(file);
-            final byte[] buffer = new byte[0x10000];
-            int count = 0;
-            while ((count = fs.read(buffer)) >= 0) {
-                output.write(buffer, 0, count);
-            }
-            output.flush();
-            output.close();
-            fs.close();
+
+
+            Headers header = exchange.getResponseHeaders();
+            header.add("Content-Disposition", "attachment; filename=\""+name+"\"");
+            header.add("Content-Type", "application/force-download");
+            header.add("Content-Transfer-Encoding", "binary");
+
+            // a PDF (you provide your own!)
+            File file = new File (currentFolder+"/"+name);
+            byte [] bytearray  = new byte [(int)file.length()];
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            bis.read(bytearray, 0, bytearray.length);
+            exchange.sendResponseHeaders(200, file.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(bytearray,0,bytearray.length);
+            os.close();
         }
     }
-    //    static class GetHandler implements HttpHandler {
-//
-//        private static String currentFolder;
-//        public GetHandler(String input) {
-//            currentFolder = input;
-//        }
-//
-//        public void handle(HttpExchange t) throws IOException {
-//            Headers h = t.getResponseHeaders();
-//            h.add("Content-Type", "text/html");
-//            fileDir = new File (currentFolder).listFiles();
-//            addFileDirToHTML(fileDir);
-//
-//            byte [] bytearray  = new byte [(int)fileIndex.length()];
-//            FileInputStream fis = new FileInputStream(fileIndex);
-//            BufferedInputStream bis = new BufferedInputStream(fis);
-//            bis.read(bytearray, 0, bytearray.length);
-//
-//            t.sendResponseHeaders(200, fileIndex.length());
-//            OutputStream os = t.getResponseBody();
-//            os.write(bytearray,0,bytearray.length);
-//            os.close();
-//        }
-//    }
+
 }
