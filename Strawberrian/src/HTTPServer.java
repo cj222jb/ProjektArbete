@@ -45,7 +45,9 @@ public class HTTPServer {
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
         server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
-        server.createContext("/", new HTMLHandler());
+        server.createContext("/home", new HTMLHandler());
+        server.createContext("/", new GetHandler());
+
         pushPictures();
         server.setExecutor(null); // creates a default executor
         server.start();
@@ -63,6 +65,7 @@ public class HTTPServer {
     static class HTMLHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
+            System.out.println("hejsan");
             fileDir = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDir);
 
@@ -96,7 +99,7 @@ public class HTTPServer {
                 liTag.attr("id","Dir"+dirCounter++);
                 liTag.attr("class", "Dir");
                 dirContent.appendChild(liTag);
-               // server.createContext("/"+dir.getName(), new HTMLHandler(rootFolder+"/Dir"));
+                server.createContext("/"+dir.getName(), new StaticFileServer(webFolder,"index/html"));
             }
         }
 
@@ -152,7 +155,25 @@ public class HTTPServer {
         }
 
     }
-//    static class GetHandler implements HttpHandler {
+    static class GetHandler implements HttpHandler {
+        public void handle(HttpExchange exchange) throws IOException {
+            String requestedFile = currentFolder+exchange.getRequestURI().toString();
+            System.out.println(requestedFile);
+            exchange.sendResponseHeaders(200, 0);
+            OutputStream output = exchange.getResponseBody();
+            File file = new File (requestedFile);
+            FileInputStream fs = new FileInputStream(file);
+            final byte[] buffer = new byte[0x10000];
+            int count = 0;
+            while ((count = fs.read(buffer)) >= 0) {
+                output.write(buffer, 0, count);
+            }
+            output.flush();
+            output.close();
+            fs.close();
+        }
+    }
+    //    static class GetHandler implements HttpHandler {
 //
 //        private static String currentFolder;
 //        public GetHandler(String input) {
