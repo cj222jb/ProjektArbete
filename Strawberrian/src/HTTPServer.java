@@ -21,8 +21,8 @@ import java.io.OutputStream;
 public class HTTPServer {
 
     /*Mikkes stationära*/
-    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 //
 /*Mikkes laptop*/
@@ -30,8 +30,8 @@ public class HTTPServer {
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
     /*Raspberry*/
-//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
     private static   HttpServer server;
