@@ -21,7 +21,7 @@ function addFileListener() {
     var allFiles = files.childNodes;
     NodeList.prototype.forEach = Array.prototype.forEach
     allFiles.forEach(function(file){
-        file.addEventListener("dblclick",function () {
+        file.addEventListener("click",function () {
             window.location.href =url+file.firstChild.innerHTML;
         });
 
@@ -31,7 +31,7 @@ function addFolderListener() {
     folders.childNodes;
     NodeList.prototype.forEach = Array.prototype.forEach
     folders.childNodes.forEach(function(folder){
-        folder.addEventListener("dblclick",function () {
+        folder.addEventListener("click",function () {
             if(url === "/"){
                 window.location.href =url + folder.firstChild.innerHTML;
             }
@@ -49,7 +49,7 @@ function addBackButtonListener() {
         aTag.innerHTML = '...';
         backButton.appendChild(aTag);
         folders.insertBefore(backButton, folders.firstChild);
-        backButton.addEventListener("dblclick", function () {
+        backButton.addEventListener("click", function () {
             url = url.slice(0,-1);
             var regex = new RegExp('/[^/]*$');
             url = url.replace(regex, '/');
@@ -59,7 +59,7 @@ function addBackButtonListener() {
 }
 function headerListener() {
     var header = document.getElementById('header');
-    header.addEventListener("dblclick", function () {
+    header.addEventListener("click", function () {
         window.location.href = "/";
     });
 }

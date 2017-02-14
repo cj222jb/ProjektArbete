@@ -21,8 +21,8 @@ import java.io.OutputStream;
 public class HTTPServer {
 
     /*Mikkes stationära*/
-//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 //
 /*Mikkes laptop*/
@@ -30,12 +30,12 @@ public class HTTPServer {
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
     /*Raspberry*/
-    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
     private static   HttpServer server;
-    private static int port = 8080;
+    private static int port = 8081;
     private static File[] fileDir;
     private static String currentFolder;
     public static void main(String[] args) throws Exception {
@@ -188,4 +188,94 @@ public class HTTPServer {
         }
 
     }
+    static class MyHandler implements HttpHandler {
+
+        @Override
+        public void handle(HttpExchange he) throws IOException {
+            System.out.println("Serving the request");
+
+            if (he.getRequestMethod().equalsIgnoreCase("POST")) {
+                he.sendResponseHeaders(200,0);
+                try {
+                    Headers requestHeaders = he.getRequestHeaders();
+                    //  Set<Map.Entry<String, List<String>>> entries = requestHeaders.entrySet();
+
+                    int contentLength = Integer.parseInt(requestHeaders.getFirst("Content-length"));
+                    System.out.println("" + requestHeaders.getFirst("Content-length"));
+
+                    InputStream is = he.getRequestBody();
+
+                    //   convertStreamToString(is);
+                    //  System.out.println(convertStreamToString(is));
+
+
+                    byte[] data = new byte[contentLength];
+                    int length = is.read(data);
+
+                    System.out.println(length);
+
+                    FileOutputStream fos = new FileOutputStream("C:\\Users\\carl\\Documents\\GitHub\\2dt301\\ProjektArbete\\Strawberrian\\src\\imgage.txt");
+                    fos.write(data);
+                    fos.close();
+
+
+                    he.close();
+
+                } catch (NumberFormatException | IOException e) {
+                }
+            }
+
+        }
+    }
+    static String convertStreamToString(InputStream is) throws IOException {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        //Reads from inputstream into a string
+        String temp = s.hasNext() ? s.next() : "";
+        System.out.println(temp);
+        //Splits temp into header and body
+        String parts[] = temp.split("\r\n\r\n", 2);
+        //Search header for the files name
+        String fileName = searchString("filename=", parts[0]);
+        // Delete " from filename
+        fileName = fileName.replace("\"","");
+        // Search header for contentType
+        String contentType  = searchString("Content-Type: image/", parts[0]);
+
+
+        parts[1] = parts[1].replaceAll("------WebKitFormBoundaryPAGtmGUpmBYfBpgK--", "");
+        String content[] = parts[1].split("------WebKit", 2);
+        byte[] b = content[0].getBytes("ISO-8859-1");
+
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\carl\\Documents\\GitHub\\2dt301\\ProjektArbete\\Strawberrian\\src\\"+fileName);
+        fos.write(b);
+        fos.close();
+
+        System.out.println(content[0]);
+
+
+        return temp; //s.hasNext() ? s.next() : "";
+    }
+    /*  static String fileType(InputStream is){
+          java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+          if(s.hasNext() ? s.next() : "" == "filename")
+          return filename;
+      }
+  */
+    private static String searchString(String var, String data){
+        int startIndex = data.indexOf(var);
+        int endIndex = data.indexOf("\r\n", startIndex);
+
+        //Check if variable is found:
+        if (startIndex == -1)
+            return null;
+
+        //Check if variable is on last line:
+        if (endIndex == -1)
+            endIndex = data.length();
+
+        return data.substring(startIndex + var.length(), endIndex);
+    }
+}
+
+
 }
