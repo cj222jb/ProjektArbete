@@ -41,13 +41,13 @@ public class HTTPServer {
     public static void main(String[] args) throws Exception {
         currentFolder= rootFolder;
 
-        System.out.println("Server up!");
+        System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
         server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
         server.createContext("/", new HTMLHandler(""));
         pushPictures();
-        iterateFolders("");
+        iterateFolders("/");
         server.setExecutor(null); // creates a default executor
         server.start();
     }
@@ -63,33 +63,25 @@ public class HTTPServer {
     private static void addFileDirToHTML(File[] fileArr) throws IOException {
 
         Document doc = Jsoup.parse(fileIndex,"UTF-8","");
-        Element dirContent = doc.getElementById("Folders");
-        Element fileContent = doc.getElementById("Files");
+        Element dirContent = doc.getElementById("folders");
+        Element fileContent = doc.getElementById("files");
         dirContent.empty();
         fileContent.empty();
-        int dirCounter = 0, fileCounter = 0;
         for (File dir : fileArr) {
             if (dir.isDirectory()) {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
                 aTag.append(dir.getName());
-                aTag.attr("download");
                 liTag.appendChild(aTag);
-                liTag.attr("id","Dir"+dirCounter++);
-                liTag.attr("class", "Dir");
                 dirContent.appendChild(liTag);
             }
         }
-
         for (File file : fileArr) {
             if (!file.isDirectory()) {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
                 aTag.append(file.getName());
-                aTag.attr("download","download");
                 liTag.appendChild(aTag);
-                liTag.attr("id","File"+fileCounter++);
-                liTag.attr("class","File");
                 fileContent.appendChild(liTag);
                 server.createContext("/"+file.getName(), new GETHandler(file.getName()));
             }
@@ -104,10 +96,9 @@ public class HTTPServer {
         for (File dir : fileArr) {
             if (dir.isDirectory()) {
 
-                folder = folderURI+"/"+dir.getName();
+                folder = folderURI+dir.getName()+"/";
                 System.out.println(folder);
                 server.createContext(folder, new HTMLHandler(folder));
-
                 iterateFolders(folder);
             }
 
@@ -123,7 +114,6 @@ public class HTTPServer {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             currentFolder= rootFolder+"/"+folderName;
-            System.out.println(currentFolder);
             fileDir = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDir);
 
@@ -144,17 +134,18 @@ public class HTTPServer {
 
 
     static class GETHandler implements HttpHandler {
-        private static String name;
+        private final String name;
         public GETHandler(String name) {
             this.name = name;
         }
         public void handle(HttpExchange exchange) throws IOException {
+            System.out.println("Client requested: "+ currentFolder+ "/"+name);
             Headers header = exchange.getResponseHeaders();
             header.add("Content-Disposition", "attachment; filename=\""+name+"\"");
             header.add("Content-Type", "application/force-download");
             header.add("Content-Transfer-Encoding", "binary");
 
-            File file = new File (currentFolder+"/"+name);
+            File file = new File (currentFolder+name);
             byte [] bytearray  = new byte [(int)file.length()];
             FileInputStream fis = new FileInputStream(file);
             BufferedInputStream bis = new BufferedInputStream(fis);

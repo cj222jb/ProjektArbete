@@ -32,12 +32,12 @@ main{
     font-size: 50px;
     padding-left: 10px;
 }
-#Folders {
+#folders {
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
 }
-#Files {
+#files {
     padding-left: 42px;
     padding-right: 10px;
 }
@@ -60,13 +60,17 @@ li:hover{
 activeTag{
     background-color: green;
 }
-#Folders li{
+#folders li{
     height: 60px;
     line-height: 60px;
     background: url('/images/folder_32.png') no-repeat left;
-
 }
-#Files li{
+#upDirectory li{
+    height: 60px;
+    line-height: 60px;
+    background: url('/images/file_32.png') no-repeat left;
+}
+#files li{
     height: 40px;
     line-height: 40px;
     background: url('/images/file_32.png') no-repeat left;
