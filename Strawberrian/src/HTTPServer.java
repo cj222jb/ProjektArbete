@@ -21,8 +21,8 @@ import java.io.OutputStream;
 public class HTTPServer {
 
     /*Mikkes stationära*/
-//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 //
 /*Mikkes laptop*/
@@ -30,8 +30,8 @@ public class HTTPServer {
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
     /*Raspberry*/
-    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
     private static   HttpServer server;
@@ -57,9 +57,21 @@ public class HTTPServer {
         for (File imgFile : imgArr) {
             server.createContext("/images/"+imgFile.getName(), new StaticFileServer(webFolder, "/images/"+imgFile.getName()));
         }
-
     }
-
+    private static void iterateFolders(String folderURI){
+        File[] fileArr = new File(rootFolder+folderURI).listFiles();
+        String folder;
+        for (File file : fileArr) {
+            if (file.isDirectory()) {
+                folder = folderURI+file.getName()+"/";
+                server.createContext(folder, new HTMLHandler(folder));
+                iterateFolders(folder);
+            }
+            else {
+                server.createContext(folderURI+file.getName(), new GETHandler(file.getName()));
+            }
+        }
+    }
     private static void addFileDirToHTML(File[] fileArr) throws IOException {
 
         Document doc = Jsoup.parse(fileIndex,"UTF-8","");
@@ -83,28 +95,13 @@ public class HTTPServer {
                 aTag.append(file.getName());
                 liTag.appendChild(aTag);
                 fileContent.appendChild(liTag);
-                server.createContext("/"+file.getName(), new GETHandler(file.getName()));
             }
         }
         PrintWriter out = new PrintWriter(new FileWriter(fileIndex));
         out.print(doc);
         out.close();
     }
-    private static void iterateFolders(String folderURI){
-    File[] fileArr = new File(rootFolder+folderURI).listFiles();
-    String folder;
-        for (File dir : fileArr) {
-            if (dir.isDirectory()) {
 
-                folder = folderURI+dir.getName()+"/";
-                System.out.println(folder);
-                server.createContext(folder, new HTMLHandler(folder));
-                iterateFolders(folder);
-            }
-
-        }
-
-    }
     static class HTMLHandler implements HttpHandler {
         private final String folderName;
         public HTMLHandler(String name) {
@@ -139,7 +136,7 @@ public class HTTPServer {
             this.name = name;
         }
         public void handle(HttpExchange exchange) throws IOException {
-            System.out.println("Client requested: "+ currentFolder+ "/"+name);
+            System.out.println("Client requested: "+ currentFolder+name);
             Headers header = exchange.getResponseHeaders();
             header.add("Content-Disposition", "attachment; filename=\""+name+"\"");
             header.add("Content-Type", "application/force-download");

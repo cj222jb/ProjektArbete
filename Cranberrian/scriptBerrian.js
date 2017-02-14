@@ -9,20 +9,39 @@ function currentURI() {
     if(url === "/"){
         url ="";
     }
-
+}
+function run() {
+    headerListener();
+    currentURI();
+    addFolderListener();
+    addFileListener();
+    addBackButtonListener();
 }
 function addFileListener() {
     var allFiles = files.childNodes;
     NodeList.prototype.forEach = Array.prototype.forEach
     allFiles.forEach(function(file){
         file.addEventListener("dblclick",function () {
-            console.log(url +"/"+file.firstChild.innerHTML);
-            window.location.href =url +"/"+file.firstChild.innerHTML;
+            window.location.href =url+file.firstChild.innerHTML;
         });
 
     });
 }
+function addFolderListener() {
+    folders.childNodes;
+    NodeList.prototype.forEach = Array.prototype.forEach
+    folders.childNodes.forEach(function(folder){
+        folder.addEventListener("dblclick",function () {
+            if(url === "/"){
+                window.location.href =url + folder.firstChild.innerHTML;
+            }
+            else{
+                window.location.href =url + folder.firstChild.innerHTML+"/";
+            }
+        });
 
+    });
+}
 function addBackButtonListener() {
     if(url != ""){
         var backButton = document.createElement('li');
@@ -35,27 +54,13 @@ function addBackButtonListener() {
             var regex = new RegExp('/[^/]*$');
             url = url.replace(regex, '/');
             window.location.href = url;
-        })
+        });
     }
 }
-function addFolderListener() {
-    folders.childNodes;
-    NodeList.prototype.forEach = Array.prototype.forEach
-    folders.childNodes.forEach(function(folder){
-        folder.addEventListener("dblclick",function () {
-            if(url === "/"){
-                console.log(window.location.href =url + folder.firstChild.innerHTML)
-                window.location.href =url + folder.firstChild.innerHTML;
-            }
-            else{
-                window.location.href =url + folder.firstChild.innerHTML+"/";
-            }
-        });
-
+function headerListener() {
+    var header = document.getElementById('header');
+    header.addEventListener("dblclick", function () {
+        window.location.href = "/";
     });
 }
-currentURI();
-console.log(url)
-addFolderListener();
-addFileListener();
-addBackButtonListener();
+run();
