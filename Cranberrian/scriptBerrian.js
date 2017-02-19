@@ -3,6 +3,8 @@ var url;
 
 var files = document.getElementById("files");
 var folders = document.getElementById("folders");
+var header = document.getElementById('header');
+var downloadFolder = document.getElementById("downloadFolder");
 
 function currentURI() {
     url =  window.location.pathname;;
@@ -16,19 +18,17 @@ function run() {
     addFolderListener();
     addFileListener();
     addBackButtonListener();
+    addDownloadFolderListener();
 }
 function addFileListener() {
-    var allFiles = files.childNodes;
     NodeList.prototype.forEach = Array.prototype.forEach
-    allFiles.forEach(function(file){
+    files.childNodes.forEach(function(file){
         file.addEventListener("click",function () {
             window.location.href =url+file.firstChild.innerHTML;
         });
-
     });
 }
 function addFolderListener() {
-    folders.childNodes;
     NodeList.prototype.forEach = Array.prototype.forEach
     folders.childNodes.forEach(function(folder){
         folder.addEventListener("click",function () {
@@ -58,9 +58,19 @@ function addBackButtonListener() {
     }
 }
 function headerListener() {
-    var header = document.getElementById('header');
     header.addEventListener("click", function () {
         window.location.href = "/";
+    });
+}
+function addDownloadFolderListener() {
+    downloadFolder.addEventListener("click", function () {
+        console.log(url);
+        if(url === "/"){
+            window.location.href =url + "/download";
+        }
+        else{
+            window.location.href =url + "download";
+        }
     });
 }
 run();

@@ -17,6 +17,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
+import java.util.Iterator;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class HTTPServer {
 
@@ -40,12 +44,12 @@ public class HTTPServer {
     private static String currentFolder;
     public static void main(String[] args) throws Exception {
         currentFolder= rootFolder;
-
         System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
         server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
         server.createContext("/", new HTMLHandler(""));
+        server.createContext("/download", new GETFolderHandler());
         pushPictures();
         iterateFolders("/");
         server.setExecutor(null); // creates a default executor
@@ -58,17 +62,18 @@ public class HTTPServer {
             server.createContext("/images/"+imgFile.getName(), new StaticFileServer(webFolder, "/images/"+imgFile.getName()));
         }
     }
-    private static void iterateFolders(String folderURI){
-        File[] fileArr = new File(rootFolder+folderURI).listFiles();
+    private static void iterateFolders(String folderURL){
+        File[] fileArr = new File(rootFolder+folderURL).listFiles();
         String folder;
         for (File file : fileArr) {
             if (file.isDirectory()) {
-                folder = folderURI+file.getName()+"/";
+                folder = folderURL+file.getName()+"/";
                 server.createContext(folder, new HTMLHandler(folder));
+                server.createContext(folder + "download", new GETFolderHandler());
                 iterateFolders(folder);
             }
             else {
-                server.createContext(folderURI+file.getName(), new GETHandler(file.getName()));
+                server.createContext(folderURL+file.getName(), new GETFileHandler(file.getName()));
             }
         }
     }
@@ -92,8 +97,12 @@ public class HTTPServer {
             if (!file.isDirectory()) {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
+                Element fileSizeTag = doc.createElement("div");
                 aTag.append(file.getName());
+                fileSizeTag.append(fileSize(file.length()));
+                fileSizeTag.attr("class","fileSize");
                 liTag.appendChild(aTag);
+                liTag.appendChild(fileSizeTag);
                 fileContent.appendChild(liTag);
             }
         }
@@ -102,6 +111,98 @@ public class HTTPServer {
         out.close();
     }
 
+    private static String fileSize(long fileLength) {
+        DecimalFormat df = new DecimalFormat("0.0");
+        float temp = fileLength;
+        if(!(temp>1024)){
+            return df.format(temp)+"B";
+        }
+        temp = temp/1024;
+        if(!(temp>1024)){
+            return df.format(temp)+"KB";
+        }
+        temp = temp/1024;
+        if(!(temp>1024)){
+            return df.format(temp)+"MB";
+        }
+        temp = temp/1024;
+        if(!(temp>1024)){
+            return df.format(temp)+"GB";
+        }
+        return null;
+    }
+
+    private static void zipFolder(String url) throws IOException {
+        File[] fileArr = new File(url).listFiles();
+        System.out.println(url);
+        File zipFile = new File(url+"/folder.zip");
+        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFile));
+        FileInputStream in;
+        byte[] buffer = new byte[1024];
+        for (File file : fileArr) {
+            if (!file.isDirectory()) {
+                ZipEntry e = new ZipEntry(file.getName());
+                out.putNextEntry(e);
+                in = new FileInputStream(url+"/"+file.getName());
+                int len;
+                while ((len = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, len);
+                }
+                in.close();
+            }
+        }
+        out.closeEntry();
+        out.close();
+    }
+
+    static String convertStreamToString(InputStream is) throws IOException {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        //Reads from inputstream into a string
+        String temp = s.hasNext() ? s.next() : "";
+        System.out.println(temp);
+        //Splits temp into header and body
+        String parts[] = temp.split("\r\n\r\n", 2);
+        //Search header for the files name
+        String fileName = searchString("filename=", parts[0]);
+        // Delete " from filename
+        fileName = fileName.replace("\"","");
+        // Search header for contentType
+        String contentType  = searchString("Content-Type: image/", parts[0]);
+
+
+        parts[1] = parts[1].replaceAll("------WebKitFormBoundaryPAGtmGUpmBYfBpgK--", "");
+        String content[] = parts[1].split("------WebKit", 2);
+        byte[] b = content[0].getBytes("ISO-8859-1");
+
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\carl\\Documents\\GitHub\\2dt301\\ProjektArbete\\Strawberrian\\src\\"+fileName);
+        fos.write(b);
+        fos.close();
+
+        System.out.println(content[0]);
+
+
+        return temp; //s.hasNext() ? s.next() : "";
+    }
+    /*  static String fileType(InputStream is){
+          java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+          if(s.hasNext() ? s.next() : "" == "filename")
+          return filename;
+      }
+  */
+    private static String searchString(String var, String data){
+        int startIndex = data.indexOf(var);
+        int endIndex = data.indexOf("\r\n", startIndex);
+
+        //Check if variable is found:
+        if (startIndex == -1)
+            return null;
+
+        //Check if variable is on last line:
+        if (endIndex == -1)
+            endIndex = data.length();
+
+        return data.substring(startIndex + var.length(), endIndex);
+    }
     static class HTMLHandler implements HttpHandler {
         private final String folderName;
         public HTMLHandler(String name) {
@@ -127,12 +228,10 @@ public class HTTPServer {
             fs.close();
         }
     }
-
-
-
-    static class GETHandler implements HttpHandler {
+    static class GETFileHandler implements HttpHandler {
         private final String name;
-        public GETHandler(String name) {
+        public GETFileHandler(String name) {
+
             this.name = name;
         }
         public void handle(HttpExchange exchange) throws IOException {
@@ -144,13 +243,48 @@ public class HTTPServer {
 
             File file = new File (currentFolder+name);
             byte [] bytearray  = new byte [(int)file.length()];
-            FileInputStream fis = new FileInputStream(file);
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            bis.read(bytearray, 0, bytearray.length);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+
+            bufferedInputStream.read(bytearray, 0, bytearray.length);
             exchange.sendResponseHeaders(200, file.length());
-            OutputStream os = exchange.getResponseBody();
-            os.write(bytearray,0,bytearray.length);
-            os.close();
+            OutputStream outputStream = exchange.getResponseBody();
+
+            outputStream.write(bytearray,0,bytearray.length);
+
+            fileInputStream.close();
+            bufferedInputStream.close();
+            outputStream.close();
+            file.delete();
+        }
+    }
+    static class GETFolderHandler implements HttpHandler {
+
+        public void handle(HttpExchange exchange) throws IOException {
+            System.out.println("Client requested   : "+ currentFolder);
+            Headers header = exchange.getResponseHeaders();
+            header.add("Content-Disposition", "attachment; filename=\"folder.zip\"");
+            header.add("Content-Type", "application/force-download");
+            header.add("Content-Transfer-Encoding", "binary");
+
+            zipFolder(currentFolder);
+
+            File file = new File (currentFolder+"folder.zip");
+
+            byte [] bytearray  = new byte [(int)file.length()];
+            FileInputStream fileInputStream = new FileInputStream(file);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+
+            bufferedInputStream.read(bytearray, 0, bytearray.length);
+            exchange.sendResponseHeaders(200, file.length());
+            OutputStream outputStream = exchange.getResponseBody();
+
+            outputStream.write(bytearray,0,bytearray.length);
+
+            fileInputStream.close();
+            bufferedInputStream.close();
+            outputStream.close();
+            file.delete();
         }
     }
     static class StaticFileServer implements HttpHandler {
@@ -227,55 +361,7 @@ public class HTTPServer {
 
         }
     }
-    static String convertStreamToString(InputStream is) throws IOException {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        //Reads from inputstream into a string
-        String temp = s.hasNext() ? s.next() : "";
-        System.out.println(temp);
-        //Splits temp into header and body
-        String parts[] = temp.split("\r\n\r\n", 2);
-        //Search header for the files name
-        String fileName = searchString("filename=", parts[0]);
-        // Delete " from filename
-        fileName = fileName.replace("\"","");
-        // Search header for contentType
-        String contentType  = searchString("Content-Type: image/", parts[0]);
 
-
-        parts[1] = parts[1].replaceAll("------WebKitFormBoundaryPAGtmGUpmBYfBpgK--", "");
-        String content[] = parts[1].split("------WebKit", 2);
-        byte[] b = content[0].getBytes("ISO-8859-1");
-
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\carl\\Documents\\GitHub\\2dt301\\ProjektArbete\\Strawberrian\\src\\"+fileName);
-        fos.write(b);
-        fos.close();
-
-        System.out.println(content[0]);
-
-
-        return temp; //s.hasNext() ? s.next() : "";
-    }
-    /*  static String fileType(InputStream is){
-          java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-          if(s.hasNext() ? s.next() : "" == "filename")
-          return filename;
-      }
-  */
-    private static String searchString(String var, String data){
-        int startIndex = data.indexOf(var);
-        int endIndex = data.indexOf("\r\n", startIndex);
-
-        //Check if variable is found:
-        if (startIndex == -1)
-            return null;
-
-        //Check if variable is on last line:
-        if (endIndex == -1)
-            endIndex = data.length();
-
-        return data.substring(startIndex + var.length(), endIndex);
-    }
-}
 
 
 }

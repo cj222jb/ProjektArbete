@@ -11,49 +11,130 @@
   <header id="header"> 
   </header> 
   <main> 
-   <div id="mainHeader"> 
-    <h4>Mediaserver </h4> 
-    <button type="button" id="download">Download Directory</button> 
-    <form id="uploadbanner" enctype="multipart/form-data" method="post" action="#"> 
-     <button type="button" value="submit" id="upload">Upload File</button> 
-     <input id="fileupload" name="myfile" type="file"> 
-    </form> 
+   <!--<form id="uploadbanner" enctype="multipart/form-data" method="post" action="#"> --> 
+   <!--<button type="button" value="submit" id="upload">Upload File</button> --> 
+   <!--<input id="fileupload" name="myfile" type="file"> --> 
+   <!--</form> --> 
+   <div class="optionBar"> 
+    <li id="downloadFolder"><a>Download Folder</a></li> 
+    <li id="addFolder"><a>Add Folder</a></li> 
+    <li id="deleteFolder"><a>Delete Folder</a></li> 
+    <li id="uploadButton"><a>Upload File</a></li> 
+    <li id="uploadFile"><a>Choose File</a></li> 
    </div> 
    <div id="folders">
-    <li><a>Dir</a></li>
-    <li><a>Dir - Copy</a></li>
-    <li><a>Folder</a></li>
-    <li><a>Folder - Copy</a></li>
+    <li><a>Folder1</a></li>
+    <li><a>Folder2</a></li>
    </div> 
    <div id="files">
-    <li><a>hammondtroll - Copy (2) - Copy.jpg</a></li>
-    <li><a>hammondtroll - Copy (2).jpg</a></li>
-    <li><a>hammondtroll - Copy (3).jpg</a></li>
-    <li><a>hammondtroll - Copy - Copy (2).jpg</a></li>
-    <li><a>hammondtroll - Copy - Copy - Copy.jpg</a></li>
-    <li><a>hammondtroll - Copy - Copy.jpg</a></li>
-    <li><a>hammondtroll - Copy.jpg</a></li>
-    <li><a>hammondtroll - Copy.txt</a></li>
-    <li><a>hammondtroll.jpg</a></li>
-    <li><a>hammondtroll.txt</a></li>
-    <li><a>maxresdefault - Copy.jpg</a></li>
-    <li><a>maxresdefault.jpg</a></li>
-    <li><a>mo222mw_ma223im_assign2 (1) - Copy.zip</a></li>
-    <li><a>mo222mw_ma223im_assign2 (1).zip</a></li>
-    <li><a>mo222mw_ma223im_assign2 - Copy.zip</a></li>
-    <li><a>mo222mw_ma223im_assign2.zip</a></li>
-    <li><a>OS_Tentaplugg - Copy.pdf</a></li>
-    <li><a>OS_Tentaplugg.pdf</a></li>
-    <li><a>raspberrypi-logo - Copy.png</a></li>
-    <li><a>raspberrypi-logo.png</a></li>
-    <li><a>raspberrypi-logo3 - Copy.png</a></li>
-    <li><a>raspberrypi-logo3.png</a></li>
-    <li><a>Stephan - Copy.png</a></li>
-    <li><a>Stephan.png</a></li>
-    <li><a>wallhaven-330670 - Copy.jpg</a></li>
-    <li><a>wallhaven-330670.jpg</a></li>
-    <li><a>WebServer - Copy.java</a></li>
-    <li><a>WebServer.java</a></li>
+    <li><a>hammondtroll - Copy (2).jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy (2) - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy (2) - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy (2).jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll - Copy.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll.jpg</a>
+     <div class="fileSize">
+      9,3KB
+     </div></li>
+    <li><a>hammondtroll.txt</a>
+     <div class="fileSize">
+      6,0B
+     </div></li>
+    <li><a>maxresdefault.jpg</a>
+     <div class="fileSize">
+      79,5KB
+     </div></li>
+    <li><a>mo222mw_ma223im_assign2 (1).zip</a>
+     <div class="fileSize">
+      1,7MB
+     </div></li>
+    <li><a>mytext.txt</a>
+     <div class="fileSize">
+      11,0B
+     </div></li>
+    <li><a>OS_Tentaplugg.pdf</a>
+     <div class="fileSize">
+      604,8KB
+     </div></li>
+    <li><a>raspberrypi-logo.png</a>
+     <div class="fileSize">
+      101,9KB
+     </div></li>
+    <li><a>raspberrypi-logo3.png</a>
+     <div class="fileSize">
+      133,5KB
+     </div></li>
+    <li><a>Stephan.png</a>
+     <div class="fileSize">
+      19,5KB
+     </div></li>
+    <li><a>wallhaven-330670.jpg</a>
+     <div class="fileSize">
+      763,2KB
+     </div></li>
+    <li><a>WebServer.java</a>
+     <div class="fileSize">
+      11,0KB
+     </div></li>
    </div> 
   </main> 
   <footer>

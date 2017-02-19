@@ -1,9 +1,10 @@
 body{
-    background: url("/images/background.jpg") fixed left top;
+    background: url("/images/background.jpg") fixed no-repeat left top;
     background-size: cover;
     font-family: 'Prompt', sans-serif;
     color: #213152;
     -webkit-user-select: none;
+    font-size: 20px;
 }
 header{
     background: url("/images/logo2.png") no-repeat center center;
@@ -45,17 +46,32 @@ main{
 }
 li{
     padding-left: 40px;
-    font-size: 20px;
     list-style: none;
     color: #213152;
+}
+a{
+    width :92%;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     border-bottom: groove 1px #9EAFC9;
 }
-
-li:hover{
+a:hover{
     transition-duration: 0.2s;
     color:#9EAFC9;
     border-color: #213152;
     cursor: pointer;
+}
+.fileSize{
+    font-size: 15px;
+    float: right;
+    text-align: center;
+    width: 8%;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 #folders li{
     height: 70px;
@@ -65,23 +81,49 @@ li:hover{
 #upDirectory li{
     height: 70px;
     line-height: 70px;
+
     background: url('/images/file_32.png') no-repeat left;
 }
 #files li{
     height: 50px;
     line-height: 50px;
-    background: url('/images/file_32.png') no-repeat left;
+    background: url('/images/download.png') no-repeat left;
 }
-#upload{
-    text-align: center;
-    margin-left: 10px;
-    margin-top: 10px;
+.optionBar {
+    margin: 10px 50px 50px;
 }
-#download{
-    margin-left: 10px;
-    margin-top: 10px;
-    text-align: center;
+.optionBar li{
+    float:left;
+    padding-right: 10px;
+    font-size: 15px;
+    line-height: 24px;
 }
+
+.optionBar a{
+    overflow: visible;
+}
+#downloadFolder{
+    padding-left: 29px;
+    background: url('/images/folder_download_24.png') no-repeat left;
+}
+#deleteFolder{
+    padding-left: 29px;
+    background: url('/images/folder_delete_24.png') no-repeat left;
+}
+#addFolder{
+    padding-left: 29px;
+    background: url('/images/folder_add_24.png') no-repeat left;
+}
+#uploadFile{
+    float: right;
+    padding-left: 29px;
+    background: url('/images/upload.png') no-repeat left;
+}
+#uploadButton{
+    float: right;
+    padding-left: 10px;
+}
+
 
 button{
     float: left;
@@ -110,12 +152,11 @@ footer{
     right: 5px;
     word-break: keep-all;
     max-width: 15%;
+    z-index: -1;
 }
-@media (max-width:1280px) {
-
+@media only screen and (max-width:1080px) {
     body{
-        background: url("/images/background.jpg") fixed left top;
-        background-size: auto;
+        font-size: 35px
     }
     #padTop{
         position: fixed;
@@ -128,14 +169,8 @@ footer{
     }
     main{
         width:98%;
-        overflow: hidden;
         min-height: 780px;
         margin: 260px 1% 80px;
-    }
-    li{
-        font-size: 17px;
-        overflow: hidden;
-
     }
     #folders li{
         height: 80px;
