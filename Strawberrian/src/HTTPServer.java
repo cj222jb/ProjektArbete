@@ -27,19 +27,21 @@ public class HTTPServer {
     /*Mikkes stationära*/
 //    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
-
+    /*Mikkes stationära*/
+    private static String webFolder = "../Cranberrian";
+    private static String rootFolder = "../root";
 //
 /*Mikkes laptop*/
 //    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
     /*Raspberry*/
-    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
     private static   HttpServer server;
-    private static int port = 8081;
+    private static int port = 8080;
     private static File[] fileDir;
     private static String currentFolder;
     public static void main(String[] args) throws Exception {
