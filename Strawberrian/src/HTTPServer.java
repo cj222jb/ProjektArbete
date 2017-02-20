@@ -25,8 +25,8 @@ import java.util.zip.ZipOutputStream;
 public class HTTPServer {
 
     /*Mikkes stationära*/
-    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
+//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
+//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
 //
 /*Mikkes laptop*/
@@ -34,8 +34,8 @@ public class HTTPServer {
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
 
     /*Raspberry*/
-//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
+    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
 
     private static  File fileIndex = new File (webFolder+"/index.html");
     private static   HttpServer server;
@@ -263,7 +263,7 @@ public class HTTPServer {
         public void handle(HttpExchange exchange) throws IOException {
             System.out.println("Client requested   : "+ currentFolder);
             Headers header = exchange.getResponseHeaders();
-            header.add("Content-Disposition", "attachment; filename=\"folder.zip\"");
+            header.add("Content-Disposition", "attachment; filename=\"bob.zip\"");
             header.add("Content-Type", "application/force-download");
             header.add("Content-Transfer-Encoding", "binary");
 
@@ -286,6 +286,8 @@ public class HTTPServer {
             outputStream.close();
             file.delete();
         }
+
+
     }
     static class StaticFileServer implements HttpHandler {
         private static String folder;
