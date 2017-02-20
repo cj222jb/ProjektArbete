@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.zip.ZipEntry;
@@ -25,26 +27,28 @@ import java.util.zip.ZipOutputStream;
 public class HTTPServer {
 
     /*Mikkes stationära*/
-//    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-//    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
-    /*Mikkes stationära*/
-    private static String webFolder = "../Cranberrian";
-    private static String rootFolder = "../root";
-//
+//    private  String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 /*Mikkes laptop*/
 //    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
-
     /*Raspberry*/
-//    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
-//    private static String rootFolder = "/home/Gooseberrian/ProjektArbete/root";
+    private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
 
-    private static  File fileIndex = new File (webFolder+"/index.html");
-    private static   HttpServer server;
-    private static int port = 8080;
-    private static File[] fileDir;
-    private static String currentFolder;
-    public static void main(String[] args) throws Exception {
+    private  String rootFolder;
+    private   File fileIndex = new File (webFolder+"/index.html");
+    private    HttpServer server;
+    private  int port = 8081;
+    private  File[] fileDir;
+    private  String currentFolder;
+    public HTTPServer(String url){
+        rootFolder = url;
+        try {
+            run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void run() throws IOException {
         currentFolder= rootFolder;
         System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
         server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -57,14 +61,14 @@ public class HTTPServer {
         server.setExecutor(null); // creates a default executor
         server.start();
     }
-
-    private static void pushPictures() {
+    private  void pushPictures() {
+        System.out.println(webFolder+"/images");
         File[] imgArr = fileDir = new File (webFolder+"/images").listFiles();
         for (File imgFile : imgArr) {
             server.createContext("/images/"+imgFile.getName(), new StaticFileServer(webFolder, "/images/"+imgFile.getName()));
         }
     }
-    private static void iterateFolders(String folderURL){
+    private  void iterateFolders(String folderURL){
         File[] fileArr = new File(rootFolder+folderURL).listFiles();
         String folder;
         for (File file : fileArr) {
@@ -79,7 +83,7 @@ public class HTTPServer {
             }
         }
     }
-    private static void addFileDirToHTML(File[] fileArr) throws IOException {
+    private void addFileDirToHTML(File[] fileArr) throws IOException {
 
         Document doc = Jsoup.parse(fileIndex,"UTF-8","");
         Element dirContent = doc.getElementById("folders");
@@ -113,7 +117,7 @@ public class HTTPServer {
         out.close();
     }
 
-    private static String fileSize(long fileLength) {
+    private String fileSize(long fileLength) {
         DecimalFormat df = new DecimalFormat("0.0");
         float temp = fileLength;
         if(!(temp>1024)){
@@ -134,7 +138,7 @@ public class HTTPServer {
         return null;
     }
 
-    private static void zipFolder(String url) throws IOException {
+    private void zipFolder(String url) throws IOException {
         File[] fileArr = new File(url).listFiles();
         System.out.println(url);
         File zipFile = new File(url+"/folder.zip");
@@ -157,7 +161,7 @@ public class HTTPServer {
         out.close();
     }
 
-    static String convertStreamToString(InputStream is) throws IOException {
+    private String convertStreamToString(InputStream is) throws IOException {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         //Reads from inputstream into a string
         String temp = s.hasNext() ? s.next() : "";
@@ -191,7 +195,7 @@ public class HTTPServer {
           return filename;
       }
   */
-    private static String searchString(String var, String data){
+    private String searchString(String var, String data){
         int startIndex = data.indexOf(var);
         int endIndex = data.indexOf("\r\n", startIndex);
 
@@ -205,7 +209,7 @@ public class HTTPServer {
 
         return data.substring(startIndex + var.length(), endIndex);
     }
-    static class HTMLHandler implements HttpHandler {
+    private class HTMLHandler implements HttpHandler {
         private final String folderName;
         public HTMLHandler(String name) {
             folderName = name;
@@ -230,7 +234,7 @@ public class HTTPServer {
             fs.close();
         }
     }
-    static class GETFileHandler implements HttpHandler {
+    private class GETFileHandler implements HttpHandler {
         private final String name;
         public GETFileHandler(String name) {
 
@@ -260,7 +264,7 @@ public class HTTPServer {
             file.delete();
         }
     }
-    static class GETFolderHandler implements HttpHandler {
+    private class GETFolderHandler implements HttpHandler {
 
         public void handle(HttpExchange exchange) throws IOException {
             System.out.println("Client requested   : "+ currentFolder);
@@ -291,9 +295,9 @@ public class HTTPServer {
 
 
     }
-    static class StaticFileServer implements HttpHandler {
-        private static String folder;
-        private final String fileName;
+    private class StaticFileServer implements HttpHandler {
+        private  String folder;
+        private  String fileName;
 
         public StaticFileServer(String folder, String fileName) {
             this.fileName = fileName;
@@ -326,7 +330,7 @@ public class HTTPServer {
         }
 
     }
-    static class MyHandler implements HttpHandler {
+    private class MyHandler implements HttpHandler {
 
         @Override
         public void handle(HttpExchange he) throws IOException {

@@ -27,18 +27,11 @@
       <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="43" column="34" lean-forward="false" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
+            <state relative-caret-position="351">
+              <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-                <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-                <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-                <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-                <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-                <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -47,12 +40,9 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-              <folding>
-                <element signature="e#64#65#0" expanded="true" />
-                <element signature="e#112#113#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="76">
+              <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,6 +71,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/MyNodeVisitor.java" />
         <option value="$PROJECT_DIR$/src/StaticFileServer.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/HTTPServer.java" />
       </list>
     </option>
@@ -146,10 +137,25 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.HTTPServer">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="HTTPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="HTTPServer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Strawberrian" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -366,12 +372,14 @@
       <listeners />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.HTTPServer" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Main" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.HTTPServer" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.HTTPServer" />
       </list>
     </recent_temporary>
   </component>
@@ -402,7 +410,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2514" height="1456" extended-state="7" />
+    <frame x="-8" y="-8" width="2514" height="1456" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -447,8 +455,14 @@
           <properties class="assign2.WebServer" method="main" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/HTTPServer.java</url>
+          <line>220</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -463,14 +477,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -479,10 +486,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -492,14 +496,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -508,10 +505,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -521,14 +515,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -537,10 +524,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -550,14 +534,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -566,10 +543,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -579,14 +553,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -595,10 +562,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -608,14 +572,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -624,10 +581,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -637,14 +591,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -653,10 +600,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -666,14 +610,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -683,10 +620,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -696,14 +630,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -713,10 +640,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -726,14 +650,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -742,9 +659,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="42" lean-forward="true" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StaticFileServer.java" />
+    <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -756,33 +682,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StaticFileServer.java" />
-    <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -801,14 +701,7 @@
           <caret line="61" column="10" lean-forward="false" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -862,31 +755,29 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.963/WebServer.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="1785" column="0" lean-forward="false" selection-start-line="1785" selection-start-column="0" selection-end-line="1785" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="42" lean-forward="false" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#112#113#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="76">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="43" column="34" lean-forward="false" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
+        <state relative-caret-position="351">
+          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#convertStreamToString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="method#handle#0;class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#MyHandler#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
