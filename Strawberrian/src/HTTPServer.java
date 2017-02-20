@@ -17,10 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
-import java.util.Iterator;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -28,20 +25,22 @@ public class HTTPServer {
 
     /*Mikkes stationära*/
 //    private  String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
-/*Mikkes laptop*/
+    /*Mikkes laptop*/
 //    private static String webFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian";
 //    private static String rootFolder = "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root";
     /*Raspberry*/
     private static String webFolder = "/home/Gooseberrian/ProjektArbete/Cranberrian";
 
     private  String rootFolder;
-    private   File fileIndex = new File (webFolder+"/index.html");
-    private    HttpServer server;
-    private  int port = 8081;
+    private  File fileIndex;
+    private  HttpServer server;
+    private  int port;
     private  File[] fileDir;
     private  String currentFolder;
     public HTTPServer(String url){
         rootFolder = url;
+        port = 8081;
+        fileIndex = new File (webFolder+"/index.html");
         try {
             run();
         } catch (IOException e) {
@@ -61,14 +60,14 @@ public class HTTPServer {
         server.setExecutor(null); // creates a default executor
         server.start();
     }
-    private  void pushPictures() {
+    private void pushPictures() {
         System.out.println(webFolder+"/images");
         File[] imgArr = fileDir = new File (webFolder+"/images").listFiles();
         for (File imgFile : imgArr) {
             server.createContext("/images/"+imgFile.getName(), new StaticFileServer(webFolder, "/images/"+imgFile.getName()));
         }
     }
-    private  void iterateFolders(String folderURL){
+    private void iterateFolders(String folderURL){
         File[] fileArr = new File(rootFolder+folderURL).listFiles();
         String folder;
         for (File file : fileArr) {
