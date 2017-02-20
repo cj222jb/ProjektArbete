@@ -39,7 +39,7 @@ public class HTTPServer {
     private  String currentFolder;
     public HTTPServer(String url){
         rootFolder = url;
-        port = 8081;
+        port = 8080;
         fileIndex = new File (webFolder+"/index.html");
         try {
             run();
