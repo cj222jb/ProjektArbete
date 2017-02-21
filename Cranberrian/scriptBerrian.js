@@ -1,16 +1,14 @@
 
 var url;
-
+var root;
 var files = document.getElementById("files");
 var folders = document.getElementById("folders");
 var header = document.getElementById('header');
 var downloadFolder = document.getElementById("downloadFolder");
 
 function currentURI() {
-    url =  window.location.pathname;;
-    if(url === "/"){
-        url ="";
-    }
+    url =  window.location.pathname;
+    root = url.split('/')[2]+"/";
 }
 function run() {
     headerListener();
@@ -37,13 +35,14 @@ function addFolderListener() {
             }
             else{
                 window.location.href =url + folder.firstChild.innerHTML+"/";
+                console.log(url + folder.firstChild.innerHTML);
             }
         });
 
     });
 }
 function addBackButtonListener() {
-    if(url != ""){
+    if(root != "/"){
         var backButton = document.createElement('li');
         var aTag = document.createElement('a');
         aTag.innerHTML = '...';

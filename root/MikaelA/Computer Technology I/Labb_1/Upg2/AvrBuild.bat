@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\Mike\Documents\Assembly\Upg2\labels.tmp" -fI -W+ie -C V3 -o "C:\Users\Mike\Documents\Assembly\Upg2\Upg2.hex" -d "C:\Users\Mike\Documents\Assembly\Upg2\Upg2.obj" -e "C:\Users\Mike\Documents\Assembly\Upg2\Upg2.eep" -m "C:\Users\Mike\Documents\Assembly\Upg2\Upg2.map" "C:\Users\Mike\Documents\Assembly\Upg2\Upg2.asm"

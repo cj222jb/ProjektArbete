@@ -123,7 +123,23 @@ a:hover{
     float: right;
     padding-left: 10px;
 }
-
+.inputName{
+    font-size: 15px;
+    margin: 10px 0px 10px 70px;
+    height:30px;
+    line-height: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.inputName input{
+    background-color:#EBF2F9;
+    border: none;
+    border-bottom: groove 1px #9EAFC9;
+    outline: none;
+}
 
 button{
     float: left;
