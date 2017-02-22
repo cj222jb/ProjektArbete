@@ -11,6 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.InetSocketAddress;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -51,8 +53,10 @@ public class HTTPServer {
         fileIndex = new File (webFolder+"/index.html");
         System.out.println("[SERVER UP, ROOT FOLDER: "+rootFolder+"]");
         currentFolder= rootFolder;
-        server.createContext("/"+user+"/", new HTMLHandler(rootFolder,"/"));
-        server.createContext("/"+user+"/" + "download", new GETFolderHandler(user));
+        String userURL = "/"+user+"/";
+        server.createContext(userURL, new HTMLHandler(rootFolder,"/"));
+        server.createContext(userURL + "download", new GETFolderHandler(user));
+        server.createContext(userURL+ "upload", new POSTHandler(user));
         iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
@@ -279,7 +283,50 @@ public class HTTPServer {
         }
 
     }
+    private class POSTHandler implements HttpHandler {
+        private final String name;
+        public POSTHandler(String name) {
+            this.name = name;
+        }
 
+        public void handle(HttpExchange exchange) throws IOException {
+            exchange.sendResponseHeaders(200, 0);
+            String receivedInput="";
+            final byte[] buffer = new byte[0x10000];
+            int count;
+            while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
+                receivedInput += new String(buffer, 0, count, "ISO-8859-1");
+            }
+            String parts[] = receivedInput.split("\r\n\r\n", 2);
+            String head = parts[0];
+            String fileName = searchString("filename=", head);
+            fileName = fileName.replaceAll("\"", "");
+            parts = parts[1].split("------",2);
+            String payload = parts[0];
+
+            File file = new File ("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\"+fileName);
+            FileOutputStream f_output = new FileOutputStream(file);
+            f_output.write(payload.getBytes("ISO-8859-1"));
+            f_output.close();
+        }
+        private String searchString(String var, String data)
+        {
+            int startIndex = data.indexOf(var);
+            int endIndex = data.indexOf("\r\n", startIndex);
+
+            //Check if variable is found:
+            if (startIndex == -1)
+                return null;
+
+            //Check if variable is on last line:
+            if (endIndex == -1)
+                endIndex = data.length();
+
+            return data.substring(startIndex + var.length(), endIndex);
+        }
+
+
+    }
 
 
 

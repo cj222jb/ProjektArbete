@@ -27,8 +27,8 @@
       <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="927">
-              <caret line="70" column="83" lean-forward="true" selection-start-line="70" selection-start-column="83" selection-end-line="70" selection-end-column="83" />
+            <state relative-caret-position="498">
+              <caret line="308" column="44" lean-forward="true" selection-start-line="308" selection-start-column="44" selection-end-line="308" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
@@ -37,9 +37,8 @@
                 <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
                 <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
                 <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="e#8153#8154#0" expanded="true" />
-                <element signature="e#8193#8194#0" expanded="true" />
-                <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+                <element signature="e#10977#10978#0" expanded="true" />
+                <element signature="e#11017#11018#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,9 +47,13 @@
       <file leaf-file-name="WebServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../root/DanskeS/WebServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="493">
+              <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+              <folding>
+                <element signature="method#trimURL#0;class#WebServer#0" expanded="false" />
+                <element signature="method#getRequest#0;class#WebServer#0" expanded="false" />
+                <element signature="method#putRequest#0;class#WebServer#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="10" column="113" lean-forward="false" selection-start-line="10" selection-start-column="113" selection-end-line="10" selection-end-column="113" />
+              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="103" />
               <folding />
             </state>
           </provider>
@@ -77,6 +80,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>system</find>
+      <find>content</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -95,10 +99,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="2514" />
-    <option name="height" value="1456" />
+    <option name="x" value="-7" />
+    <option name="width" value="1263" />
+    <option name="height" value="1447" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -116,7 +119,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -146,13 +148,14 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -428,25 +431,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2514" height="1456" extended-state="7" />
+    <frame x="-7" y="0" width="1263" height="1447" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5016026" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3328302" sideWeight="0.49839744" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37386018" sideWeight="0.49839744" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14371498" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="1030" y="278" width="436" height="884" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14354451" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="1030" y="278" width="436" height="884" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959935" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -466,7 +469,21 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../root/DanskeS/WebServer.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../root/DanskeS/WebServer.java</url>
+          <line>337</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -475,6 +492,44 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1330">
+          <caret line="70" column="83" lean-forward="true" selection-start-line="70" selection-start-column="83" selection-end-line="70" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../root/DanskeS/WebServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#trimURL#0;class#WebServer#0" expanded="false" />
+            <element signature="method#getRequest#0;class#WebServer#0" expanded="false" />
+            <element signature="method#putRequest#0;class#WebServer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="113" lean-forward="false" selection-start-line="10" selection-start-column="113" selection-end-line="10" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -487,9 +542,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -514,9 +568,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -541,9 +594,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -568,9 +620,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -595,9 +646,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -622,9 +672,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -649,9 +698,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -676,9 +724,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -703,9 +750,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -731,9 +777,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -759,9 +804,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -787,9 +831,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -807,9 +850,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -834,9 +876,8 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -879,14 +920,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../root/WebServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../root/WebServer.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.963/WebServer.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -898,15 +932,31 @@
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="10" column="113" lean-forward="false" selection-start-line="10" selection-start-column="113" selection-end-line="10" selection-end-column="113" />
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.637/TFTPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7541">
+          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/io/FileOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="160" column="11" lean-forward="false" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="927">
-          <caret line="70" column="83" lean-forward="true" selection-start-line="70" selection-start-column="83" selection-end-line="70" selection-end-column="83" />
+        <state relative-caret-position="498">
+          <caret line="308" column="44" lean-forward="true" selection-start-line="308" selection-start-column="44" selection-end-line="308" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
@@ -915,18 +965,21 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8153#8154#0" expanded="true" />
-            <element signature="e#8193#8194#0" expanded="true" />
-            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../root/DanskeS/WebServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="493">
+          <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+          <folding>
+            <element signature="method#trimURL#0;class#WebServer#0" expanded="false" />
+            <element signature="method#getRequest#0;class#WebServer#0" expanded="false" />
+            <element signature="method#putRequest#0;class#WebServer#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
