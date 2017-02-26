@@ -7,8 +7,8 @@ public class Main {
 // "/home/Gooseberrian/ProjektArbete/Cranberrian");
 
         HTTPServer webBerrian = new HTTPServer( "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian");
-        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root\\MikaelA", "MikaelA" );
-        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\root\\DanskeS", "DanskeS" );
+        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\MikaelA", "MikaelA" );
+        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\DanskeS", "DanskeS" );
 
     }
 }

@@ -5,18 +5,22 @@ var files = document.getElementById("files");
 var folders = document.getElementById("folders");
 var header = document.getElementById('header');
 var downloadFolder = document.getElementById("downloadFolder");
-
+var postForm = document.getElementById("uploadFile");
 function currentURI() {
     url =  window.location.pathname;
     root = url.split('/')[2]+"/";
+    var href = window.location.href
+    postForm.setAttribute("action", href+"upload");
 }
 function run() {
+
     headerListener();
     currentURI();
     addFolderListener();
     addFileListener();
     addBackButtonListener();
     addDownloadFolderListener();
+    POSThandler();
 }
 function addFileListener() {
     NodeList.prototype.forEach = Array.prototype.forEach
@@ -71,5 +75,12 @@ function addDownloadFolderListener() {
             window.location.href =url + "download";
         }
     });
+}
+function POSThandler(){
+    var temp1 = url.substr(url.lastIndexOf('/') + 1);
+    var temp2 = url.slice(0, url.lastIndexOf('/') + 1);
+    if(temp1 === "upload"){
+        window.location.href = temp2;
+    }
 }
 run();

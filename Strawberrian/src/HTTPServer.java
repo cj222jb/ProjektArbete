@@ -6,12 +6,12 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.InetSocketAddress;
 
 import java.io.File;
@@ -19,7 +19,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -39,7 +38,7 @@ public class HTTPServer {
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
             server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
-            server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
+            server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian2.css"));
             pushPictures();
             server.setExecutor(null); // creates a default executor
             server.start();
@@ -56,7 +55,7 @@ public class HTTPServer {
         String userURL = "/"+user+"/";
         server.createContext(userURL, new HTMLHandler(rootFolder,"/"));
         server.createContext(userURL + "download", new GETFolderHandler(user));
-        server.createContext(userURL+ "upload", new POSTHandler(user));
+        server.createContext(userURL + "upload", new POSTHandler());
         iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
@@ -73,6 +72,7 @@ public class HTTPServer {
                 folder = nextURL+file.getName()+"/";
                 server.createContext(folderURL+folder, new HTMLHandler(rootFolder,folder));
                 server.createContext(folderURL+folder + "download", new GETFolderHandler(file.getName()));
+                server.createContext(folderURL+ folder + "upload", new POSTHandler());
                 iterateFolders(rootFolder,folderURL,folder);
             }
             else {
@@ -284,15 +284,12 @@ public class HTTPServer {
 
     }
     private class POSTHandler implements HttpHandler {
-        private final String name;
-        public POSTHandler(String name) {
-            this.name = name;
-        }
+
 
         public void handle(HttpExchange exchange) throws IOException {
-            exchange.sendResponseHeaders(200, 0);
+
             String receivedInput="";
-            final byte[] buffer = new byte[0x10000];
+            final byte[] buffer = new byte[64000];
             int count;
             while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
                 receivedInput += new String(buffer, 0, count, "ISO-8859-1");
@@ -300,14 +297,31 @@ public class HTTPServer {
             String parts[] = receivedInput.split("\r\n\r\n", 2);
             String head = parts[0];
             String fileName = searchString("filename=", head);
+
             fileName = fileName.replaceAll("\"", "");
             parts = parts[1].split("------",2);
             String payload = parts[0];
 
-            File file = new File ("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\"+fileName);
+            File file = new File (currentFolder+fileName);
             FileOutputStream f_output = new FileOutputStream(file);
             f_output.write(payload.getBytes("ISO-8859-1"));
             f_output.close();
+
+            String fileSize = fileSize(payload.length());
+            System.out.println("Client posted: "+fileName +", size: "+ fileSize);
+
+            exchange.sendResponseHeaders(200, 0);
+            OutputStream output = exchange.getResponseBody();
+            FileInputStream fs = new FileInputStream(fileIndex);
+            while ((count = fs.read(buffer)) >= 0) {
+                output.write(buffer, 0, count);
+            }
+            output.flush();
+            output.close();
+            System.out.println(currentFolder+"    " +fileName);
+//TODO      fixa nya get till det som är postat.
+            server.createContext(currentFolder+fileName, new GETFileHandler(fileName));
+
         }
         private String searchString(String var, String data)
         {

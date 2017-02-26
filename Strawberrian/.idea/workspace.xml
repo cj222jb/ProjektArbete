@@ -27,42 +27,29 @@
       <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="308" column="44" lean-forward="true" selection-start-line="308" selection-start-column="44" selection-end-line="308" selection-end-column="44" />
+            <state relative-caret-position="760">
+              <caret line="304" column="58" lean-forward="true" selection-start-line="304" selection-start-column="58" selection-end-line="304" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
                 <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="e#10977#10978#0" expanded="true" />
-                <element signature="e#11017#11018#0" expanded="true" />
+                <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+                <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebServer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../root/DanskeS/WebServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
-              <folding>
-                <element signature="method#trimURL#0;class#WebServer#0" expanded="false" />
-                <element signature="method#getRequest#0;class#WebServer#0" expanded="false" />
-                <element signature="method#putRequest#0;class#WebServer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="103" />
+            <state relative-caret-position="171">
+              <caret line="9" column="71" lean-forward="false" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -93,14 +80,14 @@
       <list>
         <option value="$PROJECT_DIR$/src/MyNodeVisitor.java" />
         <option value="$PROJECT_DIR$/src/StaticFileServer.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/HTTPServer.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="1263" />
+    <option name="width" value="1422" />
     <option name="height" value="1447" />
   </component>
   <component name="ProjectView">
@@ -118,7 +105,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -148,7 +135,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,7 +418,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1263" height="1447" extended-state="0" />
+    <frame x="-7" y="0" width="1422" height="1447" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -443,13 +430,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5016026" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37386018" sideWeight="0.49839744" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.331307" sideWeight="0.49839744" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14354451" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="1030" y="278" width="436" height="884" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12731153" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" x="1030" y="278" width="436" height="884" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959935" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -469,21 +456,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../root/DanskeS/WebServer.java</url>
-          <line>60</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../root/DanskeS/WebServer.java</url>
-          <line>337</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -492,20 +465,29 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1330">
           <caret line="70" column="83" lean-forward="true" selection-start-line="70" selection-start-column="83" selection-end-line="70" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -514,11 +496,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#trimURL#0;class#WebServer#0" expanded="false" />
-            <element signature="method#getRequest#0;class#WebServer#0" expanded="false" />
-            <element signature="method#putRequest#0;class#WebServer#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -536,14 +514,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -562,14 +541,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -588,14 +568,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -614,14 +595,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -640,14 +622,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -666,14 +649,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -692,14 +676,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -718,14 +703,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -744,14 +730,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -771,14 +758,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -798,14 +786,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -825,14 +814,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -844,14 +834,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -870,14 +861,15 @@
           <caret line="61" column="10" lean-forward="false" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -929,22 +921,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.637/TFTPServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7541">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.637/TFTPServer.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/io/FileOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -953,33 +930,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../root/DanskeS/WebServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="375" column="27" lean-forward="false" selection-start-line="375" selection-start-column="27" selection-end-line="375" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="308" column="44" lean-forward="true" selection-start-line="308" selection-start-column="44" selection-end-line="308" selection-end-column="44" />
+        <state relative-caret-position="760">
+          <caret line="304" column="58" lean-forward="true" selection-start-line="304" selection-start-column="58" selection-end-line="304" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#iterateFolders#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#HTMLHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#10977#10978#0" expanded="true" />
-            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="class#StaticFileServer#0;class#HTTPServer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../root/DanskeS/WebServer.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
-          <folding>
-            <element signature="method#trimURL#0;class#WebServer#0" expanded="false" />
-            <element signature="method#getRequest#0;class#WebServer#0" expanded="false" />
-            <element signature="method#putRequest#0;class#WebServer#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="171">
+          <caret line="9" column="71" lean-forward="false" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
