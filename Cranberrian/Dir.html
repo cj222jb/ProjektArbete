@@ -1,23 +1,44 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/css/>">
-    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-</head>
-<body>
-<header>
-</header>
-<main>
-    <button type="button" id="Upload"> Upload File! </button>
-    <h3>Your Files!</h3>
-    <div id="Folders">
-
-    </div>
-    <div id="Files">
-
-    </div>
-</main>
-<script src="/js"></script>
-</body>
+ <head> 
+  <meta charset="UTF-8"> 
+  <link rel="stylesheet" type="text/css" href="/css/>"> 
+  <!--<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet"> --> 
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+  <link rel="icon" href="/images/icon.png"> 
+ </head> 
+ <body> 
+  <div id="padTop"></div> 
+  <header id="header"> 
+  </header> 
+  <main> 
+   <div class="optionBar"> 
+    <li id="downloadFolder"><a>Download Folder</a></li> 
+    <li id="addFolder"><a>Add Folder</a></li> 
+    <li id="deleteFolder"><a>Delete Folder</a></li> 
+    <li id="chooseFile"> 
+     <form id="uploadFile" action="" method="post" enctype="multipart/form-data"> 
+      <input id="file" class="inputfile" type="file" name="file" onchange="javascript:this.form.submit()"> 
+      <label for="file">Upload File</label> 
+     </form> </li> 
+   </div> 
+   <h5 id="path"></h5> 
+   <div id="folders">
+    <li class="folder"><a>Computer Technology I</a></li>
+    <li class="folder"><a>Fysik1</a></li>
+   </div> 
+   <div id="files">
+    <li>
+     <div class="fileSize">
+      9,3KB
+     </div><a>Blarg.jpg</a>
+     <div class="deleteFile"></div></li>
+   </div> 
+  </main> 
+  <footer>
+    Made By: 
+   <br>Mikael Andersson och Carl Johansen 
+  </footer> 
+  <script src="/js"></script>  
+ </body>
 </html>

@@ -1,17 +1,21 @@
 body{
-    background: url("/images/background.jpg") fixed no-repeat left top;
-    background-size: cover;
-    font-family: 'Prompt', sans-serif;
-    color: #213152;
+    font-family: 'Open Sans', sans-serif;
     -webkit-user-select: none;
     font-size: 20px;
+}
+html{
+    background: url("/images/background.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 header{
     background: url("/images/logo2.png") no-repeat center center;
     height: 190px;
     width: 150px;
     background-size: cover;
-    position: fixed;
+    position: absolute;
     top: 3%;
     left: 5%;
     z-index: 2;
@@ -25,8 +29,9 @@ main{
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 5%;
-    background-color:#EBF2F9;
-    border: solid 2px #9EAFC9;
+    background:#F4F3F0;
+    border: solid 2px #424344;
+    border-radius: 10px;
 
 }
 
@@ -42,61 +47,78 @@ main{
 #files {
     padding-left: 42px;
     padding-right: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 50px;
 }
 li{
-    padding-left: 40px;
+    border-bottom: groove 1px #424344;
     list-style: none;
-    color: #213152;
 }
 a{
-    width :92%;
     overflow:hidden;
     display:inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
-    border-bottom: groove 1px #9EAFC9;
+}
+#files a{
+    width: 80%;
+    margin-left: 12px;
+}
+#folders a{
+    margin-left: 12px;
 }
 a:hover{
     transition-duration: 0.2s;
     color:#9EAFC9;
-    border-color: #213152;
+    border-color: #303030;
     cursor: pointer;
 }
-.fileSize{
-    font-size: 15px;
-    float: right;
-    text-align: center;
-    width: 8%;
-    overflow:hidden;
-    display:inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
 #folders li{
-    height: 70px;
-    line-height: 70px;
-    background: url('/images/folder_32.png') no-repeat left;
-}
-#upDirectory li{
+    padding-left: 32px;
     height: 70px;
     line-height: 70px;
 
-    background: url('/images/file_32.png') no-repeat left;
+}
+#upDirectory{
+    background: url('/images/folder_up_32.png') no-repeat left;
+}
+.folder{
+    background: url('/images/folder_32.png') no-repeat left;
 }
 #files li{
+
     height: 50px;
     line-height: 50px;
-    background: url('/images/download.png') no-repeat left;
+}
+.deleteFile {
+    float:right;
+    text-align: center;
+    width: 32px;
+    display:inline-block;
+    height: 32px;
+    margin-top: 16px;
+    background: url('/images/delete.png') no-repeat;
+}
+.fileSize{
+    font-weight: bold;
+    font-size: 15px;
+    width:80px;
+    overflow:hidden;
+    display:inline-block;
+
 }
 .optionBar {
-    margin: 10px 50px 50px;
+    margin: 10px 10px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .optionBar li{
     float:left;
     padding-right: 10px;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 24px;
+    border-bottom: none;
 }
 
 .optionBar a{
@@ -114,51 +136,24 @@ a:hover{
     padding-left: 29px;
     background: url('/images/folder_add_24.png') no-repeat left;
 }
-#uploadFile{
+#chooseFile{
     float: right;
-    padding-left: 29px;
+    padding-left: 20px;
     background: url('/images/upload.png') no-repeat left;
 }
-#uploadButton{
-    float: right;
-    padding-left: 10px;
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    overflow: hidden;
+    background-color: black;
+    display: inline-block;
 }
-.inputName{
-    font-size: 15px;
-    margin: 10px 0px 10px 70px;
-    height:30px;
-    line-height: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
-    display:inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.inputName input{
-    background-color:#EBF2F9;
-    border: none;
-    border-bottom: groove 1px #9EAFC9;
-    outline: none;
-}
-
-button{
-    float: left;
-    color:#EBF2F9;
-    font-size: 15px;
-    text-decoration:none;
-    background-color: #213152;
-    border-style: none;
-    height:30px;
-    width:160px;
-}
-button:hover{
-    cursor: pointer;
+.inputfile +label:hover{
     transition-duration: 0.2s;
-    color:#213152;
-    background: #EBF2F9;
-    border: solid 1px #9EAFC9;
+    color:#9EAFC9;
+    border-color: #303030;
+    cursor: pointer;
 }
-
 footer{
     opacity: 0.6;
     font-size: 20px;
@@ -167,22 +162,25 @@ footer{
     bottom: 0;
     right: 5px;
     word-break: keep-all;
-    max-width: 15%;
+    max-width: 16%;
     z-index: -1;
 }
+
+
+
 @media only screen and (max-width:1080px) {
     body{
         font-size: 35px
     }
-    #padTop{
-        position: fixed;
-        top:0;
-        left:0;
-        width: 100%;
-        height: 260px;
-        z-index: 1;
-        background: url("/images/background.jpg")  center top;
-    }
+    /*#padTop{*/
+        /*position: fixed;*/
+        /*top:0;*/
+        /*left:0;*/
+        /*width: 100%;*/
+        /*height: 260px;*/
+        /*z-index: 1;*/
+        /*background: url("/images/background2.jpg")  center top;*/
+    /*}*/
     main{
         width:98%;
         min-height: 780px;
@@ -206,5 +204,9 @@ footer{
         max-width: 100%;
         word-break: keep-all;
     }
+    .deleteFile{
+        margin-top: 15px;
+    }
+
 
 }

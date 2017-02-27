@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -25,19 +27,20 @@ public class HTTPServer {
 
     private  String rootFolder;
     private  String webFolder;
-    private  File fileIndex;
+    private  File htmlSPA;
     private  HttpServer server;
     private  int port;
-    private  File[] fileDir;
+    private  File[] fileDirectory;
     private  String currentFolder;
-    public HTTPServer(String webFolder){
-        port = 8080;
+    private final int limitSize = 10000000;
+    public HTTPServer(String webFolder, int port){
+        this.port = port;
         this.webFolder = webFolder;
         try {
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
             server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
-            server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian2.css"));
+            server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
             pushPictures();
             server.setExecutor(null); // creates a default executor
             server.start();
@@ -48,8 +51,8 @@ public class HTTPServer {
     }
     public void run(String rootFolder, String user)  {
         this.rootFolder = rootFolder;
-        fileIndex = new File (webFolder+"/index.html");
-        System.out.println("[SERVER UP, ROOT FOLDER: "+rootFolder+"]");
+        htmlSPA = new File (webFolder+"/dir.html");
+        System.out.println("[USER CONNECTED, ROOT FOLDER: "+rootFolder+"]");
         currentFolder= rootFolder;
         String userURL = "/"+user+"/";
         server.createContext(userURL, new HTMLHandler(rootFolder,"/"));
@@ -58,7 +61,7 @@ public class HTTPServer {
         iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
-        File[] imgArr = fileDir = new File (webFolder+"/images").listFiles();
+        File[] imgArr = fileDirectory = new File (webFolder+"/images").listFiles();
         for (File imgFile : imgArr) {
             server.createContext("/images/"+imgFile.getName(), new StaticFileServer(webFolder, "/images/"+imgFile.getName()));
         }
@@ -81,7 +84,7 @@ public class HTTPServer {
     }
     private void addFileDirToHTML(File[] fileArr) throws IOException {
 
-        Document doc = Jsoup.parse(fileIndex,"UTF-8","");
+        Document doc = Jsoup.parse(htmlSPA,"UTF-8","");
         Element dirContent = doc.getElementById("folders");
         Element fileContent = doc.getElementById("files");
         dirContent.empty();
@@ -90,6 +93,7 @@ public class HTTPServer {
             if (dir.isDirectory()) {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
+                liTag.attr("class","folder");
                 aTag.append(dir.getName());
                 liTag.appendChild(aTag);
                 dirContent.appendChild(liTag);
@@ -100,15 +104,19 @@ public class HTTPServer {
                 Element liTag = doc.createElement("li");
                 Element aTag = doc.createElement("a");
                 Element fileSizeTag = doc.createElement("div");
+                Element deleteFile = doc.createElement("div");
                 aTag.append(file.getName());
                 fileSizeTag.append(fileSize(file.length()));
                 fileSizeTag.attr("class","fileSize");
-                liTag.appendChild(aTag);
+                deleteFile.attr("class","deleteFile");
                 liTag.appendChild(fileSizeTag);
+                liTag.appendChild(aTag);
+                liTag.appendChild(deleteFile);
+
                 fileContent.appendChild(liTag);
             }
         }
-        PrintWriter out = new PrintWriter(new FileWriter(fileIndex));
+        PrintWriter out = new PrintWriter(new FileWriter(htmlSPA));
         out.print(doc);
         out.close();
     }
@@ -154,6 +162,14 @@ public class HTTPServer {
         out.closeEntry();
         out.close();
     }
+    private void errorHandler(HttpExchange exchange, String response, int errorCode) throws IOException {
+        //TODO need to fix window.location(-1)
+        exchange.sendResponseHeaders(errorCode, response.length());
+        OutputStream output = exchange.getResponseBody();
+        output.write(response.getBytes());
+        output.flush();
+        output.close();
+    }
     private class HTMLHandler implements HttpHandler {
         private final String folderName;
         private final String rootFolder;
@@ -166,12 +182,12 @@ public class HTTPServer {
         public void handle(HttpExchange exchange) throws IOException {
 
             currentFolder= rootFolder+"/"+folderName;
-            fileDir = new File (currentFolder).listFiles();
-            addFileDirToHTML(fileDir);
+            fileDirectory = new File (currentFolder).listFiles();
+            addFileDirToHTML(fileDirectory);
 
             exchange.sendResponseHeaders(200, 0);
             OutputStream output = exchange.getResponseBody();
-            FileInputStream fs = new FileInputStream(fileIndex);
+            FileInputStream fs = new FileInputStream(htmlSPA);
             final byte[] buffer = new byte[0x10000];
             int count = 0;
             while ((count = fs.read(buffer)) >= 0) {
@@ -260,12 +276,8 @@ public class HTTPServer {
         public void handle(HttpExchange exchange) throws IOException {
             File file =  new File (webFolder+fileName);
             if (file == null) {
-                String response = "Error 404 File not found.";
-                exchange.sendResponseHeaders(404, response.length());
-                OutputStream output = exchange.getResponseBody();
-                output.write(response.getBytes());
-                output.flush();
-                output.close();
+                String response = "Error 404: File not found.";
+              errorHandler(exchange, response, 404);
             } else {
                 exchange.sendResponseHeaders(200, 0);
                 OutputStream output = exchange.getResponseBody();
@@ -283,44 +295,50 @@ public class HTTPServer {
 
     }
     private class POSTHandler implements HttpHandler {
-
-
         public void handle(HttpExchange exchange) throws IOException {
+            Headers header = exchange.getRequestHeaders();
 
-            String receivedInput="";
-            final byte[] buffer = new byte[64000];
-            int count;
-            while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
-                receivedInput += new String(buffer, 0, count, "ISO-8859-1");
+            int contentLength = Integer.parseInt(header.getFirst("Content-Length"));
+            if(contentLength>limitSize){
+                String response = "Error 413: Payload Too Large";
+                errorHandler(exchange,response, 413);
             }
-            String parts[] = receivedInput.split("\r\n\r\n", 2);
-            String head = parts[0];
-            String fileName = searchString("filename=", head);
+            else {
+                String referer = header.getFirst("Referer");
+                referer = getURLFromRequest(referer);
+                String receivedInput = "";
+                final byte[] buffer = new byte[64000];
+                int count;
+                while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
+                    receivedInput += new String(buffer, 0, count, "ISO-8859-1");
+                }
+                String parts[] = receivedInput.split("\r\n\r\n", 2);
+                String head = parts[0];
+                String fileName = searchString("filename=", head);
 
-            fileName = fileName.replaceAll("\"", "");
-            parts = parts[1].split("------",2);
-            String payload = parts[0];
-            System.out.println(head);
+                fileName = fileName.replaceAll("\"", "");
+                parts = parts[1].split("------", 2);
+                String payload = parts[0];
 
-            File file = new File (currentFolder+fileName);
-            FileOutputStream f_output = new FileOutputStream(file);
-            f_output.write(payload.getBytes("ISO-8859-1"));
-            f_output.close();
+                File file = new File(currentFolder + fileName);
+                FileOutputStream f_output = new FileOutputStream(file);
+                f_output.write(payload.getBytes("ISO-8859-1"));
+                f_output.close();
 
-            String fileSize = fileSize(payload.length());
-            System.out.println("Client posted: "+fileName +", size: "+ fileSize);
+                String fileSize = fileSize(payload.length());
+                System.out.println("Client posted: " + fileName + ", size: " + fileSize);
 
-            exchange.sendResponseHeaders(200, 0);
-            OutputStream output = exchange.getResponseBody();
-            FileInputStream fs = new FileInputStream(fileIndex);
-            while ((count = fs.read(buffer)) >= 0) {
-                output.write(buffer, 0, count);
-            }
-            output.flush();
-            output.close();
+                exchange.sendResponseHeaders(200, 0);
+                OutputStream output = exchange.getResponseBody();
+                FileInputStream fs = new FileInputStream(htmlSPA);
+                while ((count = fs.read(buffer)) >= 0) {
+                    output.write(buffer, 0, count);
+                }
+                output.flush();
+                output.close();
 //TODO      fixa nya get till det som är postat.
-            server.createContext(currentFolder+fileName, new GETFileHandler(fileName));
-
+                server.createContext(referer + fileName, new GETFileHandler(fileName));
+            }
         }
         private String searchString(String var, String data)
         {
@@ -336,6 +354,15 @@ public class HTTPServer {
                 endIndex = data.length();
 
             return data.substring(startIndex + var.length(), endIndex);
+        }
+        private String getURLFromRequest(String referer){
+            try {
+                URI uri = new URI(referer);
+                referer = uri.getPath();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            return referer;
         }
 
 

@@ -8,7 +8,7 @@ var downloadFolder = document.getElementById("downloadFolder");
 var postForm = document.getElementById("uploadFile");
 function currentURI() {
     url =  window.location.pathname;
-    root = url.split('/')[2]+"/";
+    root = "/"+ url.split('/')[1]+"/";
     var href = window.location.href
     postForm.setAttribute("action", href+"upload");
 }
@@ -21,38 +21,44 @@ function run() {
     addBackButtonListener();
     addDownloadFolderListener();
     POSThandler();
+    deleteFileListener();
+    listenToFileChooser();
 }
 function addFileListener() {
-    NodeList.prototype.forEach = Array.prototype.forEach
     files.childNodes.forEach(function(file){
-        file.addEventListener("click",function () {
-            window.location.href =url+file.firstChild.innerHTML;
-        });
+        var aTag = file.childNodes[2];
+        if(aTag != null){
+            aTag.addEventListener("click",function () {
+                window.location.href =url+aTag.innerHTML;
+            });
+        }
     });
 }
 function addFolderListener() {
-    NodeList.prototype.forEach = Array.prototype.forEach
     folders.childNodes.forEach(function(folder){
-        folder.addEventListener("click",function () {
-            if(url === "/"){
-                window.location.href =url + folder.firstChild.innerHTML;
-            }
-            else{
-                window.location.href =url + folder.firstChild.innerHTML+"/";
-                console.log(url + folder.firstChild.innerHTML);
-            }
-        });
+        var aTag = folder.firstChild;
+        if(aTag != null){
+            aTag.addEventListener("click",function () {
+                if(url === "/"){
+                    window.location.href =url + folder.firstChild.innerHTML;
+                }
+                else{
+                    window.location.href =url + folder.firstChild.innerHTML+"/";
+                }
+            });
 
+        }
     });
 }
 function addBackButtonListener() {
-    if(root != "/"){
-        var backButton = document.createElement('li');
+    if(url != root){
+        var folderBack = document.createElement('li');
         var aTag = document.createElement('a');
-        aTag.innerHTML = '...';
-        backButton.appendChild(aTag);
-        folders.insertBefore(backButton, folders.firstChild);
-        backButton.addEventListener("click", function () {
+        aTag.innerHTML = '. . .';
+        folderBack.appendChild(aTag);
+        folderBack.setAttribute("id","upDirectory")
+        folders.insertBefore(folderBack, folders.firstChild);
+        folderBack.addEventListener("click", function () {
             url = url.slice(0,-1);
             var regex = new RegExp('/[^/]*$');
             url = url.replace(regex, '/');
@@ -62,12 +68,11 @@ function addBackButtonListener() {
 }
 function headerListener() {
     header.addEventListener("click", function () {
-        window.location.href = "/";
+        window.location.href = root ;
     });
 }
 function addDownloadFolderListener() {
     downloadFolder.addEventListener("click", function () {
-        console.log(url);
         if(url === "/"){
             window.location.href =url + "/download";
         }
@@ -82,5 +87,27 @@ function POSThandler(){
     if(temp1 === "upload"){
         window.location.href = temp2;
     }
+}
+function listenToFileChooser(){
+    // var upload = document.getElementById("upload");
+    // upload.addEventListener('change', function () {
+    //  document.forms["uploadFile"].submit;
+    // });
+
+}
+
+function deleteFileListener() {
+    files.childNodes.forEach(function(file){
+        var aTag = file.childNodes[2];
+        var deleteTag = file.lastChild;
+        if(deleteTag != null){
+            deleteTag.addEventListener("click",function () {
+                var result = confirm("Want to delete: "+aTag.innerHTML);
+                if (result) {
+                }
+            });
+        }
+    });
+
 }
 run();
