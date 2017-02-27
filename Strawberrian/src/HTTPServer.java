@@ -6,7 +6,6 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -76,6 +75,7 @@ public class HTTPServer {
                 iterateFolders(rootFolder,folderURL,folder);
             }
             else {
+                System.out.println(folderURL+nextURL+file.getName());
                 server.createContext(folderURL+nextURL+file.getName(), new GETFileHandler(file.getName()));
             }
         }
@@ -301,6 +301,7 @@ public class HTTPServer {
             fileName = fileName.replaceAll("\"", "");
             parts = parts[1].split("------",2);
             String payload = parts[0];
+            System.out.println(head);
 
             File file = new File (currentFolder+fileName);
             FileOutputStream f_output = new FileOutputStream(file);
