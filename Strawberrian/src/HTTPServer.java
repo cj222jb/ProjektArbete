@@ -31,7 +31,7 @@ public class HTTPServer {
     private  File[] fileDir;
     private  String currentFolder;
     public HTTPServer(String webFolder){
-        port = 8081;
+        port = 8080;
         this.webFolder = webFolder;
         try {
             server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -75,7 +75,6 @@ public class HTTPServer {
                 iterateFolders(rootFolder,folderURL,folder);
             }
             else {
-                System.out.println(folderURL+nextURL+file.getName());
                 server.createContext(folderURL+nextURL+file.getName(), new GETFileHandler(file.getName()));
             }
         }
@@ -319,7 +318,6 @@ public class HTTPServer {
             }
             output.flush();
             output.close();
-            System.out.println(currentFolder+"    " +fileName);
 //TODO      fixa nya get till det som är postat.
             server.createContext(currentFolder+fileName, new GETFileHandler(fileName));
 
