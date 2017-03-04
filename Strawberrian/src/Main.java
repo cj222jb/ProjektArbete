@@ -6,9 +6,11 @@ public class Main {
 //        webBerrian.run("/home/Gooseberrian/ProjektArbete/root/MikaelA", "MikaelA" );
 //        webBerrian.run("/home/Gooseberrian/ProjektArbete/root/DanskeS", "DanskeS" );
 
-        HTTPServer webBerrian = new HTTPServer( "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian", 8081);
-        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\MikaelA", "MikaelA" );
-        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\DanskeS", "DanskeS" );
-
+//        HTTPServer webBerrian = new HTTPServer( "C:\\Users\\Mikael Andersson\\Documents\\Projects\\ProjektArbete\\Cranberrian", 8081);
+//        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\MikaelA", "MikaelA" );
+//        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\DanskeS", "DanskeS" );
+        HTTPServer webBerrian = new HTTPServer( "/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/Cranberrian", 8080);
+        webBerrian.run("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/root/MikaelA", "MikaelA" );
+        webBerrian.run("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/root/DanskeS", "DanskeS" );
     }
 }

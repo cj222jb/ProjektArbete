@@ -5,6 +5,7 @@ var files = document.getElementById("files");
 var folders = document.getElementById("folders");
 var header = document.getElementById('header');
 var downloadFolder = document.getElementById("downloadFolder");
+var deleteFolder = document.getElementById("deleteFolder");
 var postForm = document.getElementById("uploadFile");
 function currentURI() {
     url =  window.location.pathname;
@@ -21,7 +22,10 @@ function run() {
     addBackButtonListener();
     addDownloadFolderListener();
     POSThandler();
+    DELETEFileHandler();
+    DELETEFolderHandler();
     deleteFileListener();
+    deleteFolderListener();
     listenToFileChooser();
 }
 function addFileListener() {
@@ -88,6 +92,22 @@ function POSThandler(){
         window.location.href = temp2;
     }
 }
+function DELETEFileHandler(){
+    var temp1 = url.substr(url.lastIndexOf('/') + 1);
+    var temp2 = url.slice(0, url.lastIndexOf('/'));
+    temp2 = temp2.slice(0, temp2.lastIndexOf('/')+1);
+    if(temp1 === "deletefile"){
+        window.location.href = temp2;
+    }
+}
+function DELETEFolderHandler(){
+    var temp1 = url.substr(url.lastIndexOf('/') + 1);
+    var temp2 = url.slice(0, url.lastIndexOf('/'));
+    temp2 = temp2.slice(0, temp2.lastIndexOf('/')+1);
+    if(temp1 === "deletefolder"){
+        window.location.href = temp2;
+    }
+}
 function listenToFileChooser(){
     // var upload = document.getElementById("upload");
     // upload.addEventListener('change', function () {
@@ -104,10 +124,26 @@ function deleteFileListener() {
             deleteTag.addEventListener("click",function () {
                 var result = confirm("Want to delete: "+aTag.innerHTML);
                 if (result) {
+                    window.location.href =url+aTag.innerHTML+"/deletefile";
                 }
             });
         }
     });
+
+}
+
+function deleteFolderListener() {
+    var temp = url.slice(0, url.lastIndexOf('/'));
+    temp = temp.substr(temp.lastIndexOf('/')+1);
+
+    deleteFolder.addEventListener("click",function () {
+        var result = confirm("Want to delete: "+temp);
+        if (result) {
+            window.location.href =url+"deletefolder";
+        }
+    });
+
+
 
 }
 run();

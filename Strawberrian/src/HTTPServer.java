@@ -39,12 +39,12 @@ public class HTTPServer {
         try {
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
-            server.createContext("/js", new StaticFileServer(webFolder, "/scriptBerrian.js"));
-            server.createContext("/css", new StaticFileServer(webFolder, "/fancyBerrian.css"));
+            server.createContext("/js", new StaticFileHandler("/scriptBerrian.js"));
+            server.createContext("/css", new StaticFileHandler("/fancyBerrian.css"));
             pushPictures();
             server.setExecutor(null); // creates a default executor
             server.start();
-            server.createContext("/", new HTMLHandler(rootFolder,"/"));
+            server.createContext("/", new SPAContextHandler(rootFolder,"/"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,17 +53,18 @@ public class HTTPServer {
         this.rootFolder = rootFolder;
         htmlSPA = new File (webFolder+"/dir.html");
         System.out.println("[USER CONNECTED, ROOT FOLDER: "+rootFolder+"]");
+
         currentFolder= rootFolder;
         String userURL = "/"+user+"/";
-        server.createContext(userURL, new HTMLHandler(rootFolder,"/"));
+        server.createContext(userURL, new SPAContextHandler(rootFolder,"/"));
         server.createContext(userURL + "download", new GETFolderHandler(user));
-        server.createContext(userURL + "upload", new POSTHandler());
+        server.createContext(userURL + "upload", new POSTFileHandler());
         iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
         File[] imgArr = fileDirectory = new File (webFolder+"/images").listFiles();
         for (File imgFile : imgArr) {
-            server.createContext("/images/"+imgFile.getName(), new StaticFileServer(webFolder, "/images/"+imgFile.getName()));
+            server.createContext("/images/"+imgFile.getName(), new StaticFileHandler("/images/"+imgFile.getName()));
         }
     }
     private void iterateFolders(String rootFolder,String folderURL, String nextURL){
@@ -72,13 +73,15 @@ public class HTTPServer {
         for (File file : fileArr) {
             if (file.isDirectory()) {
                 folder = nextURL+file.getName()+"/";
-                server.createContext(folderURL+folder, new HTMLHandler(rootFolder,folder));
+                server.createContext(folderURL+folder, new SPAContextHandler(rootFolder,folder));
                 server.createContext(folderURL+folder + "download", new GETFolderHandler(file.getName()));
-                server.createContext(folderURL+ folder + "upload", new POSTHandler());
+                server.createContext(folderURL+ folder + "upload", new POSTFileHandler());
+                server.createContext(folderURL+folder+"deletefolder", new DELETEFolderHandler(file.getName()));
                 iterateFolders(rootFolder,folderURL,folder);
             }
             else {
                 server.createContext(folderURL+nextURL+file.getName(), new GETFileHandler(file.getName()));
+                server.createContext(folderURL+nextURL+file.getName()+"/deletefile", new DELETEFileHandler(file.getName()));
             }
         }
     }
@@ -162,6 +165,18 @@ public class HTTPServer {
         out.closeEntry();
         out.close();
     }
+    private boolean deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i=0; i<children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        return dir.delete();
+    }
     private void errorHandler(HttpExchange exchange, String response, int errorCode) throws IOException {
         //TODO need to fix window.location(-1)
         exchange.sendResponseHeaders(errorCode, response.length());
@@ -170,10 +185,27 @@ public class HTTPServer {
         output.flush();
         output.close();
     }
-    private class HTMLHandler implements HttpHandler {
+    private void htmlHandler(HttpExchange exchange, File file){
+        try {
+            exchange.sendResponseHeaders(200, 0);
+            OutputStream output = exchange.getResponseBody();
+            FileInputStream fs = new FileInputStream(file);
+            final byte[] buffer = new byte[0x10000];
+            int count = 0;
+            while ((count = fs.read(buffer)) >= 0) {
+                output.write(buffer, 0, count);
+            }
+            output.flush();
+            output.close();
+            fs.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private class SPAContextHandler implements HttpHandler {
         private final String folderName;
         private final String rootFolder;
-        public HTMLHandler(String rootFolder,String name) {
+        public SPAContextHandler(String rootFolder, String name) {
             this.rootFolder = rootFolder;
             folderName = name;
         }
@@ -184,24 +216,12 @@ public class HTTPServer {
             currentFolder= rootFolder+"/"+folderName;
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
-
-            exchange.sendResponseHeaders(200, 0);
-            OutputStream output = exchange.getResponseBody();
-            FileInputStream fs = new FileInputStream(htmlSPA);
-            final byte[] buffer = new byte[0x10000];
-            int count = 0;
-            while ((count = fs.read(buffer)) >= 0) {
-                output.write(buffer, 0, count);
-            }
-            output.flush();
-            output.close();
-            fs.close();
+            htmlHandler(exchange, htmlSPA);
         }
     }
     private class GETFileHandler implements HttpHandler {
         private final String name;
         public GETFileHandler(String name) {
-
             this.name = name;
         }
         public void handle(HttpExchange exchange) throws IOException {
@@ -254,7 +274,6 @@ public class HTTPServer {
             OutputStream outputStream = exchange.getResponseBody();
 
             outputStream.write(bytearray,0,bytearray.length);
-
             fileInputStream.close();
             bufferedInputStream.close();
             outputStream.close();
@@ -263,13 +282,11 @@ public class HTTPServer {
 
 
     }
-    private class StaticFileServer implements HttpHandler {
-        private  String folder;
-        private  String fileName;
+    private class StaticFileHandler implements HttpHandler {
 
-        public StaticFileServer(String folder, String fileName) {
+        private  String fileName;
+        public StaticFileHandler(String fileName) {
             this.fileName = fileName;
-            this.folder = folder;
         }
 
         @Override
@@ -277,24 +294,23 @@ public class HTTPServer {
             File file =  new File (webFolder+fileName);
             if (file == null) {
                 String response = "Error 404: File not found.";
-              errorHandler(exchange, response, 404);
+                errorHandler(exchange, response, 404);
             } else {
-                exchange.sendResponseHeaders(200, 0);
-                OutputStream output = exchange.getResponseBody();
-                FileInputStream fs = new FileInputStream(file);
-                final byte[] buffer = new byte[0x10000];
-                int count = 0;
-                while ((count = fs.read(buffer)) >= 0) {
-                    output.write(buffer, 0, count);
-                }
-                output.flush();
-                output.close();
-                fs.close();
+                htmlHandler(exchange, file);
             }
         }
 
     }
-    private class POSTHandler implements HttpHandler {
+    private String getURLFromRequest(String referer){
+        try {
+            URI uri = new URI(referer);
+            referer = uri.getPath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return referer;
+    }
+    private class POSTFileHandler implements HttpHandler {
         public void handle(HttpExchange exchange) throws IOException {
             Headers header = exchange.getRequestHeaders();
 
@@ -328,16 +344,9 @@ public class HTTPServer {
                 String fileSize = fileSize(payload.length());
                 System.out.println("Client posted: " + fileName + ", size: " + fileSize);
 
-                exchange.sendResponseHeaders(200, 0);
-                OutputStream output = exchange.getResponseBody();
-                FileInputStream fs = new FileInputStream(htmlSPA);
-                while ((count = fs.read(buffer)) >= 0) {
-                    output.write(buffer, 0, count);
-                }
-                output.flush();
-                output.close();
-//TODO      fixa nya get till det som är postat.
-                server.createContext(referer + fileName, new GETFileHandler(fileName));
+                htmlHandler(exchange, htmlSPA);
+
+//                server.createContext(referer + fileName, new GETFileHandler(fileName));
             }
         }
         private String searchString(String var, String data)
@@ -355,19 +364,58 @@ public class HTTPServer {
 
             return data.substring(startIndex + var.length(), endIndex);
         }
-        private String getURLFromRequest(String referer){
-            try {
-                URI uri = new URI(referer);
-                referer = uri.getPath();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-            return referer;
-        }
+
 
 
     }
+    private class DELETEFileHandler implements HttpHandler {
+        private final String name;
+        public DELETEFileHandler(String name) {
+            this.name = name;
+        }
+        public void handle(HttpExchange exchange) throws IOException {
+            System.out.println("[CLIENT REQUESTED REMOVAL OF FILE: "+name+"]");
+            Headers header = exchange.getRequestHeaders();
+            String referer = header.getFirst("Referer");
 
+            File file = new File (currentFolder+name);
+            if(file.exists()){
+                referer = getURLFromRequest(referer);
+                server.removeContext(referer+file.getName());
+                file.delete();
+                htmlHandler(exchange, htmlSPA);
+            }
+            else{
+                String response = "Error 404: File not found.";
+                errorHandler(exchange, response, 404);
+            }
+
+        }
+    }
+    private class DELETEFolderHandler implements HttpHandler {
+        private final String name;
+        public DELETEFolderHandler(String name) {
+            this.name = name;
+        }
+        public void handle(HttpExchange exchange) throws IOException {
+            System.out.println("[CLIENT REQUESTED REMOVAL OF FOLDER: "+name+"]");
+            Headers header = exchange.getRequestHeaders();
+            String referer = header.getFirst("Referer");
+
+            File dir = new File (currentFolder);
+            if(dir.exists()){
+                referer = getURLFromRequest(referer);
+                server.removeContext(referer);
+                deleteDir(dir);
+                htmlHandler(exchange, htmlSPA);
+            }
+            else{
+                String response = "Error 404: Folder not found.";
+                errorHandler(exchange, response, 404);
+            }
+
+        }
+    }
 
 
 }
