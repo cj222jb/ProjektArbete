@@ -13,8 +13,11 @@
   <main> 
    <div class="optionBar"> 
     <li id="downloadFolder"><a>Download Folder</a></li> 
-    <li id="addFolder"><a>Add Folder</a></li> 
-    <li id="deleteFolder"><a>Delete Folder</a></li> 
+    <li id="addFolder"> 
+     <form id="uploadFolder" action="" method="post" enctype="multipart/form-data"> 
+      <label for="folder">Add Folder: </label> 
+      <input id="folder" type="text" name="folder" onchange="javascript:this.form.submit()"> 
+     </form> </li> 
     <li id="chooseFile"> 
      <form id="uploadFile" action="" method="post" enctype="multipart/form-data"> 
       <input id="file" class="inputfile" type="file" name="file" onchange="javascript:this.form.submit()"> 
@@ -22,7 +25,15 @@
      </form> </li> 
    </div> 
    <h5 id="path"></h5> 
-   <div id="folders"></div> 
+   <div id="folders">
+    <li class="folder"><a>blargh</a></li>
+    <li class="folder"><a>boombitch</a></li>
+    <li class="folder"><a>folder</a></li>
+    <li class="folder"><a>Folder1_Folder1_Folder</a></li>
+    <li class="folder"><a>hoi</a></li>
+    <li class="folder"><a>sup</a></li>
+    <li class="folder"><a>yo</a></li>
+   </div> 
    <div id="files">
     <li>
      <div class="fileSize">
@@ -31,18 +42,43 @@
      <div class="deleteFile"></div></li>
     <li>
      <div class="fileSize">
-      44.0KB
-     </div><a>12696033_1176936925651632_436491180_n.jpg</a>
+      35.2KB
+     </div><a>funny-Nicola-Cage-ET-face-swap.jpg</a>
      <div class="deleteFile"></div></li>
     <li>
      <div class="fileSize">
-      12.2MB
-     </div><a>ivmZbxNe8NmYI.jpg</a>
+      9.3KB
+     </div><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
      <div class="deleteFile"></div></li>
     <li>
      <div class="fileSize">
-      32.4KB
-     </div><a>wkVxzYk.jpg</a>
+      9.3KB
+     </div><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="deleteFile"></div></li>
+    <li>
+     <div class="fileSize">
+      9.3KB
+     </div><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="deleteFile"></div></li>
+    <li>
+     <div class="fileSize">
+      9.3KB
+     </div><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="deleteFile"></div></li>
+    <li>
+     <div class="fileSize">
+      9.3KB
+     </div><a>hammondtroll - Copy - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="deleteFile"></div></li>
+    <li>
+     <div class="fileSize">
+      9.3KB
+     </div><a>hammondtroll - Copy - Copy - Copy - Copy - Copy.jpg</a>
+     <div class="deleteFile"></div></li>
+    <li>
+     <div class="fileSize">
+      1.7MB
+     </div><a>mo222mw_ma223im_assign2 (1).zip</a>
      <div class="deleteFile"></div></li>
    </div> 
   </main> 

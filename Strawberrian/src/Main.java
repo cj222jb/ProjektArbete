@@ -10,7 +10,7 @@ public class Main {
 //        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\MikaelA", "MikaelA" );
 //        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\DanskeS", "DanskeS" );
         HTTPServer webBerrian = new HTTPServer( "/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/Cranberrian", 8080);
-        webBerrian.run("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/root/MikaelA", "MikaelA" );
-        webBerrian.run("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/root/DanskeS", "DanskeS" );
+        webBerrian.run("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/root/MikaelA", "MikaelA" );
+        webBerrian.run("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/root/DanskeS", "DanskeS" );
     }
 }

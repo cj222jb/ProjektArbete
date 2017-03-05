@@ -19,8 +19,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="65" lean-forward="false" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+            <state relative-caret-position="195">
+              <caret line="13" column="88" lean-forward="false" selection-start-line="13" selection-start-column="88" selection-end-line="13" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -29,29 +29,35 @@
       <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="193" column="26" lean-forward="true" selection-start-line="193" selection-start-column="26" selection-end-line="193" selection-end-column="26" />
+            <state relative-caret-position="-154">
+              <caret line="435" column="18" lean-forward="false" selection-start-line="435" selection-start-column="18" selection-end-line="435" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#run#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
-                <element signature="class#SPAContextHandler#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#htmlHandler#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
                 <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="e#8606#8607#0" expanded="true" />
-                <element signature="e#8646#8647#0" expanded="true" />
+                <element signature="e#9234#9235#0" expanded="true" />
+                <element signature="e#9274#9275#0" expanded="true" />
                 <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="class#StaticFileHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="e#11264#11265#0" expanded="true" />
-                <element signature="e#11312#11313#0" expanded="true" />
+                <element signature="e#11892#11893#0" expanded="true" />
+                <element signature="e#11940#11941#0" expanded="true" />
                 <element signature="method#getURLFromRequest#0;class#HTTPServer#0" expanded="false" />
                 <element signature="class#POSTFileHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="e#14382#14383#0" expanded="true" />
-                <element signature="e#14422#14423#0" expanded="true" />
-                <element signature="e#15301#15302#0" expanded="true" />
-                <element signature="e#15341#15342#0" expanded="true" />
+                <element signature="class#DELETEFileHandler#0;class#HTTPServer#0" expanded="false" />
+                <element signature="e#14516#14517#0" expanded="true" />
+                <element signature="e#14556#14557#0" expanded="true" />
+                <element signature="class#DELETEFolderHandler#0;class#HTTPServer#0" expanded="false" />
+                <element signature="e#15435#15436#0" expanded="true" />
+                <element signature="e#15475#15476#0" expanded="true" />
+                <element signature="e#16331#16332#0" expanded="true" />
+                <element signature="e#16371#16372#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -425,18 +431,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/HTTPServer.java</url>
-          <line>64</line>
+          <line>67</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/HTTPServer.java</url>
-          <line>312</line>
+          <line>330</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -467,62 +473,74 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#run#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#SPAContextHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#htmlHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8606#8607#0" expanded="true" />
-            <element signature="e#8646#8647#0" expanded="true" />
+            <element signature="e#9234#9235#0" expanded="true" />
+            <element signature="e#9274#9275#0" expanded="true" />
             <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#StaticFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#11264#11265#0" expanded="true" />
-            <element signature="e#11312#11313#0" expanded="true" />
+            <element signature="e#11892#11893#0" expanded="true" />
+            <element signature="e#11940#11941#0" expanded="true" />
             <element signature="method#getURLFromRequest#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#POSTFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#14382#14383#0" expanded="true" />
-            <element signature="e#14422#14423#0" expanded="true" />
-            <element signature="e#15301#15302#0" expanded="true" />
-            <element signature="e#15341#15342#0" expanded="true" />
+            <element signature="class#DELETEFileHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#14516#14517#0" expanded="true" />
+            <element signature="e#14556#14557#0" expanded="true" />
+            <element signature="class#DELETEFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#15435#15436#0" expanded="true" />
+            <element signature="e#15475#15476#0" expanded="true" />
+            <element signature="e#16331#16332#0" expanded="true" />
+            <element signature="e#16371#16372#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="65" lean-forward="false" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
+        <state relative-caret-position="195">
+          <caret line="13" column="88" lean-forward="false" selection-start-line="13" selection-start-column="88" selection-end-line="13" selection-end-column="88" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="193" column="26" lean-forward="true" selection-start-line="193" selection-start-column="26" selection-end-line="193" selection-end-column="26" />
+        <state relative-caret-position="-154">
+          <caret line="435" column="18" lean-forward="false" selection-start-line="435" selection-start-column="18" selection-end-line="435" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#run#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#HTTPServer#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#pushPictures#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#SPAContextHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#htmlHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#searchString#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#GETFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#8606#8607#0" expanded="true" />
-            <element signature="e#8646#8647#0" expanded="true" />
+            <element signature="e#9234#9235#0" expanded="true" />
+            <element signature="e#9274#9275#0" expanded="true" />
             <element signature="class#GETFolderHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="class#StaticFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#11264#11265#0" expanded="true" />
-            <element signature="e#11312#11313#0" expanded="true" />
+            <element signature="e#11892#11893#0" expanded="true" />
+            <element signature="e#11940#11941#0" expanded="true" />
             <element signature="method#getURLFromRequest#0;class#HTTPServer#0" expanded="false" />
             <element signature="class#POSTFileHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#14382#14383#0" expanded="true" />
-            <element signature="e#14422#14423#0" expanded="true" />
-            <element signature="e#15301#15302#0" expanded="true" />
-            <element signature="e#15341#15342#0" expanded="true" />
+            <element signature="class#DELETEFileHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#14516#14517#0" expanded="true" />
+            <element signature="e#14556#14557#0" expanded="true" />
+            <element signature="class#DELETEFolderHandler#0;class#HTTPServer#0" expanded="false" />
+            <element signature="e#15435#15436#0" expanded="true" />
+            <element signature="e#15475#15476#0" expanded="true" />
+            <element signature="e#16331#16332#0" expanded="true" />
+            <element signature="e#16371#16372#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -33,6 +33,7 @@ public class HTTPServer {
     private  File[] fileDirectory;
     private  String currentFolder;
     private final int limitSize = 10000000;
+
     public HTTPServer(String webFolder, int port){
         this.port = port;
         this.webFolder = webFolder;
@@ -59,6 +60,8 @@ public class HTTPServer {
         server.createContext(userURL, new SPAContextHandler(rootFolder,"/"));
         server.createContext(userURL + "download", new GETFolderHandler(user));
         server.createContext(userURL + "upload", new POSTFileHandler());
+
+        server.createContext(userURL+"addfolder", new ADDFolderHandler(user));
         iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
@@ -77,6 +80,7 @@ public class HTTPServer {
                 server.createContext(folderURL+folder + "download", new GETFolderHandler(file.getName()));
                 server.createContext(folderURL+ folder + "upload", new POSTFileHandler());
                 server.createContext(folderURL+folder+"deletefolder", new DELETEFolderHandler(file.getName()));
+                server.createContext(folderURL+folder+"addfolder", new ADDFolderHandler(file.getName()));
                 iterateFolders(rootFolder,folderURL,folder);
             }
             else {
@@ -201,6 +205,20 @@ public class HTTPServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private String searchString(String var, String data) {
+        int startIndex = data.indexOf(var);
+        int endIndex = data.indexOf("\r\n", startIndex);
+
+        //Check if variable is found:
+        if (startIndex == -1)
+            return null;
+
+        //Check if variable is on last line:
+        if (endIndex == -1)
+            endIndex = data.length();
+
+        return data.substring(startIndex + var.length(), endIndex);
     }
     private class SPAContextHandler implements HttpHandler {
         private final String folderName;
@@ -346,24 +364,10 @@ public class HTTPServer {
 
                 htmlHandler(exchange, htmlSPA);
 
-//                server.createContext(referer + fileName, new GETFileHandler(fileName));
+                server.createContext(referer + fileName, new GETFileHandler(fileName));
             }
         }
-        private String searchString(String var, String data)
-        {
-            int startIndex = data.indexOf(var);
-            int endIndex = data.indexOf("\r\n", startIndex);
 
-            //Check if variable is found:
-            if (startIndex == -1)
-                return null;
-
-            //Check if variable is on last line:
-            if (endIndex == -1)
-                endIndex = data.length();
-
-            return data.substring(startIndex + var.length(), endIndex);
-        }
 
 
 
@@ -413,6 +417,51 @@ public class HTTPServer {
                 String response = "Error 404: Folder not found.";
                 errorHandler(exchange, response, 404);
             }
+
+        }
+    }
+    private class ADDFolderHandler implements HttpHandler {
+        private final String name;
+        public ADDFolderHandler(String name) {
+            this.name = name;
+        }
+        public void handle(HttpExchange exchange) throws IOException {
+            System.out.println("[Client requested to add folder at: "+name+"]");
+            Headers header = exchange.getRequestHeaders();
+            File currentDir = new File (currentFolder);
+            if(!currentDir.exists()){
+                String response = "Error 500: Internal Server Error";
+                errorHandler(exchange,response, 500);
+            }
+            else {
+                String referer = header.getFirst("Referer");
+                referer = getURLFromRequest(referer);
+                String receivedInput = "";
+                final byte[] buffer = new byte[6000];
+                int count;
+                while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
+                    receivedInput += new String(buffer, 0, count, "ISO-8859-1");
+                }
+                String parts[] = receivedInput.split("\r\n\r\n", 2);
+                parts = parts[1].split("------", 2);
+                String folderName = parts[0].substring(0, parts[0].length()-2);
+                File newDir = new File (currentFolder+"/"+folderName);
+                if(newDir.exists()){
+                    String response = "Error 403: Forbidden, Folder already exists";
+                    errorHandler(exchange,response, 500);
+                }
+                else {
+                    newDir.mkdir();
+                    System.out.println(currentFolder);
+                    System.out.println(folderName);
+                    server.createContext(referer + folderName, new SPAContextHandler(currentFolder, folderName));
+                    htmlHandler(exchange, htmlSPA);
+                }
+            }
+
+
+
+
 
         }
     }

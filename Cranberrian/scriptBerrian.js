@@ -1,34 +1,58 @@
 
 var url;
 var root;
+var lastURL;
 var files = document.getElementById("files");
 var folders = document.getElementById("folders");
-var header = document.getElementById('header');
+var header = document.getElementById("header");
+var optionBar = document.getElementsByClassName("optionBar")[0];
 var downloadFolder = document.getElementById("downloadFolder");
 var deleteFolder = document.getElementById("deleteFolder");
-var postForm = document.getElementById("uploadFile");
+var addFolder = document.getElementById("addFolder");
+var postFormFile = document.getElementById("uploadFile");
+var postFormFolder = document.getElementById("uploadFolder");
 function currentURI() {
     url =  window.location.pathname;
     root = "/"+ url.split('/')[1]+"/";
+    lastURL = url.substr(url.lastIndexOf('/') + 1);
+    if(url != root){
+        addDeleteFolderButton();
+    }
     var href = window.location.href
-    postForm.setAttribute("action", href+"upload");
+    postFormFile.setAttribute("action", href+"upload");
+    postFormFolder.setAttribute("action", href+"addfolder");
 }
 function run() {
-
     headerListener();
     currentURI();
-    addFolderListener();
-    addFileListener();
-    addBackButtonListener();
+    foldersListener();
+    filesListener();
+    addBackButton();
     addDownloadFolderListener();
-    POSThandler();
+    POSTHandler();
     DELETEFileHandler();
-    DELETEFolderHandler();
     deleteFileListener();
-    deleteFolderListener();
-    listenToFileChooser();
+    ADDFolderHandler();
+   // addFolderListener();
 }
-function addFileListener() {
+function addDeleteFolderButton() {
+
+    if(deleteFolder === null){
+        var tempLi = document.createElement('li');
+        var tempA = document.createElement('a');
+        tempA.innerHTML = 'Delete Folder';
+        tempLi.appendChild(tempA);
+        tempLi.setAttribute("id","deleteFolder");
+        optionBar.appendChild(tempLi);
+
+        deleteFolder = document.getElementById("deleteFolder");
+        DELETEFolderHandler();
+        deleteFolderListener();
+
+    }
+
+}
+function filesListener() {
     files.childNodes.forEach(function(file){
         var aTag = file.childNodes[2];
         if(aTag != null){
@@ -38,7 +62,7 @@ function addFileListener() {
         }
     });
 }
-function addFolderListener() {
+function foldersListener() {
     folders.childNodes.forEach(function(folder){
         var aTag = folder.firstChild;
         if(aTag != null){
@@ -50,11 +74,10 @@ function addFolderListener() {
                     window.location.href =url + folder.firstChild.innerHTML+"/";
                 }
             });
-
         }
     });
 }
-function addBackButtonListener() {
+function addBackButton() {
     if(url != root){
         var folderBack = document.createElement('li');
         var aTag = document.createElement('a');
@@ -85,36 +108,33 @@ function addDownloadFolderListener() {
         }
     });
 }
-function POSThandler(){
-    var temp1 = url.substr(url.lastIndexOf('/') + 1);
+function POSTHandler(){
     var temp2 = url.slice(0, url.lastIndexOf('/') + 1);
-    if(temp1 === "upload"){
+    if(lastURL === "upload"){
         window.location.href = temp2;
     }
 }
 function DELETEFileHandler(){
-    var temp1 = url.substr(url.lastIndexOf('/') + 1);
     var temp2 = url.slice(0, url.lastIndexOf('/'));
     temp2 = temp2.slice(0, temp2.lastIndexOf('/')+1);
-    if(temp1 === "deletefile"){
+    if(lastURL === "deletefile"){
         window.location.href = temp2;
     }
 }
 function DELETEFolderHandler(){
-    var temp1 = url.substr(url.lastIndexOf('/') + 1);
     var temp2 = url.slice(0, url.lastIndexOf('/'));
     temp2 = temp2.slice(0, temp2.lastIndexOf('/')+1);
-    if(temp1 === "deletefolder"){
+    if(lastURL === "deletefolder"){
         window.location.href = temp2;
     }
 }
-function listenToFileChooser(){
-    // var upload = document.getElementById("upload");
-    // upload.addEventListener('change', function () {
-    //  document.forms["uploadFile"].submit;
-    // });
-
+function ADDFolderHandler(){
+    var temp = url.slice(0, url.lastIndexOf('/')+1);
+    if(lastURL === "addfolder"){
+        window.location.href = temp;
+    }
 }
+
 
 function deleteFileListener() {
     files.childNodes.forEach(function(file){
@@ -142,8 +162,10 @@ function deleteFolderListener() {
             window.location.href =url+"deletefolder";
         }
     });
-
-
-
+}
+function addFolderListener() {
+    addFolder.addEventListener("click",function () {
+            window.location.href =url+"addfolder";
+    });
 }
 run();
