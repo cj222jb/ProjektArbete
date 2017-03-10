@@ -38,11 +38,11 @@
       <file leaf-file-name="Authentication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Authentication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+            <state relative-caret-position="646">
+              <caret line="43" column="111" selection-start-line="43" selection-start-column="111" selection-end-line="43" selection-end-column="111" />
               <folding>
-                <marker date="1488896295121" expanded="true" signature="624:649" ph="Select missi... userBerrian" />
-                <marker date="1488896295121" expanded="true" signature="1470:1529" ph="Select * fro... userBerrian" />
+                <marker date="1489152007943" expanded="true" signature="670:695" ph="Select missi... userBerrian" />
+                <marker date="1489152007943" expanded="true" signature="1562:1621" ph="Select * fro... userBerrian" />
               </folding>
             </state>
           </provider>
@@ -101,9 +101,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/jsoup-1.10.2.jar!/org/jsoup/helper/DataUtil.class" />
-        <option value="$PROJECT_DIR$/src/Authentication.java" />
         <option value="$PROJECT_DIR$/src/HTTPServer.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Authentication.java" />
       </list>
     </option>
   </component>
@@ -656,15 +656,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486027874348</updated>
-      <workItem from="1488892283222" duration="14917000" />
+      <workItem from="1488892283222" duration="14929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14917000" />
+    <option name="totallyTimeSpent" value="14929000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1370" height="744" extended-state="1" />
+    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -835,11 +835,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Authentication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+        <state relative-caret-position="646">
+          <caret line="43" column="111" selection-start-line="43" selection-start-column="111" selection-end-line="43" selection-end-column="111" />
           <folding>
-            <marker date="1488896295121" expanded="true" signature="624:649" ph="Select missi... userBerrian" />
-            <marker date="1488896295121" expanded="true" signature="1470:1529" ph="Select * fro... userBerrian" />
+            <marker date="1489152007943" expanded="true" signature="670:695" ph="Select missi... userBerrian" />
+            <marker date="1489152007943" expanded="true" signature="1562:1621" ph="Select * fro... userBerrian" />
           </folding>
         </state>
       </provider>
