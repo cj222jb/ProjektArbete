@@ -2,10 +2,7 @@
  * Created by mikaelandersson on 2017-02-02.
  */
 
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,6 +17,7 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -27,17 +25,22 @@ public class HTTPServer {
 
     private  String rootFolder;
     private  String webFolder;
+    private  String root;
     private  File htmlSPA;
+    private  File htmlIndex;
     private  HttpServer server;
     private  int port;
     private  File[] fileDirectory;
     private  String currentFolder;
     private final int limitSize = 10000000;
 
-    public HTTPServer(String webFolder, int port){
+    public HTTPServer(String webFolder,String root ,int port){
         this.port = port;
+        this.root = root;
         this.webFolder = webFolder;
         try {
+            Authentication authenticate = new Authentication();
+            ArrayList<String> userList = authenticate.getAll();
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
             server.createContext("/js", new StaticFileHandler("/scriptBerrian.js"));
@@ -45,23 +48,41 @@ public class HTTPServer {
             pushPictures();
             server.setExecutor(null); // creates a default executor
             server.start();
-            server.createContext("/", new SPAContextHandler(rootFolder,"/"));
+            //   server.createContext("/", new SPAContextHandler(rootFolder,"/"));
+            server.createContext("/", new HTMLIndexHandler());
+            for(int i = 0; i < userList.size(); i++){
+                System.out.println(userList.get(i));
+                System.out.println(authenticate.getUserInformation(userList.get(i))[2]);
+                run(root+authenticate.getUserInformation(userList.get(i))[2], userList.get(i) );
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void run(String rootFolder, String user)  {
+    public void run(String rootFolder, String user) throws IOException {
+        Authentication authenticate = new Authentication();
+        ArrayList<String> userNames = authenticate.getAll();
         this.rootFolder = rootFolder;
+        System.out.println(rootFolder);
         htmlSPA = new File (webFolder+"/dir.html");
+        htmlIndex = new File(webFolder+"/index.html");
         System.out.println("[USER CONNECTED, ROOT FOLDER: "+rootFolder+"]");
 
         currentFolder= rootFolder;
         String userURL = "/"+user+"/";
-        server.createContext(userURL, new SPAContextHandler(rootFolder,"/"));
+        //  server.createContext(userURL, new SPAContextHandler(rootFolder,"/"));
         server.createContext(userURL + "download", new GETFolderHandler(user));
         server.createContext(userURL + "upload", new POSTFileHandler());
 
         server.createContext(userURL+"addfolder", new ADDFolderHandler(user));
+        HttpContext hc1 = server.createContext(userURL, new SPAContextHandler(rootFolder, ""));
+        hc1.setAuthenticator(new BasicAuthenticator(user) {
+            @Override
+            public boolean checkCredentials(String user, String pwd) {
+                return user.equals(user) && pwd.equals(authenticate.getUserInformation(user)[1]);
+            }
+        });
+        displayUsersToHTML(userNames);
         iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
@@ -70,11 +91,25 @@ public class HTTPServer {
             server.createContext("/images/"+imgFile.getName(), new StaticFileHandler("/images/"+imgFile.getName()));
         }
     }
+    private void displayUsersToHTML(ArrayList<String> userNames) throws IOException {
+        Document doc = Jsoup.parse(htmlIndex,"UTF-8","");
+        Element userContent = doc.getElementById("userDiv");
+        userContent.empty();
+        for (String userName : userNames) {
+            Element aTag = doc.createElement("a");
+            aTag.append(userName);
+            userContent.appendChild(aTag);
+        }
+        PrintWriter out = new PrintWriter(new FileWriter(htmlIndex));
+        out.print(doc);
+        out.close();
+    }
     private void iterateFolders(String rootFolder,String folderURL, String nextURL){
         File[] fileArr = new File(rootFolder+"/"+nextURL).listFiles();
         String folder ;
         for (File file : fileArr) {
             if (file.isDirectory()) {
+
                 folder = nextURL+file.getName()+"/";
                 server.createContext(folderURL+folder, new SPAContextHandler(rootFolder,folder));
                 server.createContext(folderURL+folder + "download", new GETFolderHandler(file.getName()));
@@ -181,13 +216,18 @@ public class HTTPServer {
         }
         return dir.delete();
     }
-    private void errorHandler(HttpExchange exchange, String response, int errorCode) throws IOException {
-        //TODO need to fix window.location(-1)
-        exchange.sendResponseHeaders(errorCode, response.length());
-        OutputStream output = exchange.getResponseBody();
-        output.write(response.getBytes());
-        output.flush();
-        output.close();
+    private void errorHandler(HttpExchange exchange, String response, int errorCode){
+
+        try {
+            exchange.sendResponseHeaders(errorCode, response.length());
+            OutputStream output = exchange.getResponseBody();
+            output.write(response.getBytes());
+            output.flush();
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     private void htmlHandler(HttpExchange exchange, File file){
         try {
@@ -203,7 +243,8 @@ public class HTTPServer {
             output.close();
             fs.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            String response = "Error 500: Internal Server Error.";
+            errorHandler(exchange, response, 500);
         }
     }
     private String searchString(String var, String data) {
@@ -230,8 +271,8 @@ public class HTTPServer {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-
             currentFolder= rootFolder+"/"+folderName;
+            System.out.println(currentFolder);
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
             htmlHandler(exchange, htmlSPA);
@@ -248,22 +289,35 @@ public class HTTPServer {
             header.add("Content-Disposition", "attachment; filename=\""+name+"\"");
             header.add("Content-Type", "application/force-download");
             header.add("Content-Transfer-Encoding", "binary");
+            try {
+                File file = new File (currentFolder+name);
+                if(!file.exists())
+                    throw new Exception();
+                byte [] bytearray  = new byte [(int)file.length()];
+                FileInputStream fileInputStream = new FileInputStream(file);
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+                bufferedInputStream.read(bytearray, 0, bytearray.length);
+                exchange.sendResponseHeaders(200, file.length());
+                OutputStream outputStream = exchange.getResponseBody();
 
-            File file = new File (currentFolder+name);
-            byte [] bytearray  = new byte [(int)file.length()];
-            FileInputStream fileInputStream = new FileInputStream(file);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+                outputStream.write(bytearray,0,bytearray.length);
 
-            bufferedInputStream.read(bytearray, 0, bytearray.length);
-            exchange.sendResponseHeaders(200, file.length());
-            OutputStream outputStream = exchange.getResponseBody();
+                fileInputStream.close();
+                bufferedInputStream.close();
+                outputStream.close();
+            } catch (Exception e) {
+                String response = "Error 404: File not found.";
+                errorHandler(exchange, response, 404);
+            }
+        }
+    }
+    private class HTMLIndexHandler implements HttpHandler{
+        public HTMLIndexHandler(){
 
-            outputStream.write(bytearray,0,bytearray.length);
-
-            fileInputStream.close();
-            bufferedInputStream.close();
-            outputStream.close();
-
+        }
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            htmlHandler(exchange, htmlIndex);
         }
     }
     private class GETFolderHandler implements HttpHandler {
@@ -272,30 +326,35 @@ public class HTTPServer {
             this.name = name;
         }
 
-        public void handle(HttpExchange exchange) throws IOException {
+        public void handle(HttpExchange exchange){
             System.out.println("Client requested   : "+ currentFolder);
             Headers header = exchange.getResponseHeaders();
             header.add("Content-Disposition", "attachment; filename=\""+name+".zip\"");
             header.add("Content-Type", "application/force-download");
             header.add("Content-Transfer-Encoding", "binary");
 
-            zipFolder(currentFolder);
+            try {
+                zipFolder(currentFolder);
 
-            File file = new File (currentFolder+"folder.zip");
+                File file = new File (currentFolder+"folder.zip");
 
-            byte [] bytearray  = new byte [(int)file.length()];
-            FileInputStream fileInputStream = new FileInputStream(file);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+                byte [] bytearray  = new byte [(int)file.length()];
+                FileInputStream fileInputStream = new FileInputStream(file);
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
 
-            bufferedInputStream.read(bytearray, 0, bytearray.length);
-            exchange.sendResponseHeaders(200, file.length());
-            OutputStream outputStream = exchange.getResponseBody();
+                bufferedInputStream.read(bytearray, 0, bytearray.length);
+                exchange.sendResponseHeaders(200, file.length());
+                OutputStream outputStream = exchange.getResponseBody();
 
-            outputStream.write(bytearray,0,bytearray.length);
-            fileInputStream.close();
-            bufferedInputStream.close();
-            outputStream.close();
-            file.delete();
+                outputStream.write(bytearray,0,bytearray.length);
+                fileInputStream.close();
+                bufferedInputStream.close();
+                outputStream.close();
+                file.delete();
+            } catch (IOException e) {
+                String response = "Error 500: Internal Server Error.";
+                errorHandler(exchange, response, 500);
+            }
         }
 
 
@@ -308,13 +367,18 @@ public class HTTPServer {
         }
 
         @Override
-        public void handle(HttpExchange exchange) throws IOException {
-            File file =  new File (webFolder+fileName);
-            if (file == null) {
-                String response = "Error 404: File not found.";
-                errorHandler(exchange, response, 404);
-            } else {
-                htmlHandler(exchange, file);
+        public void handle(HttpExchange exchange){
+            try {
+                File file = new File(webFolder + fileName);
+                if (file == null) {
+                    String response = "Error 404: File not found.";
+                    errorHandler(exchange, response, 404);
+                } else {
+                    htmlHandler(exchange, file);
+                }
+            }catch (Exception e){
+                String response = "Error 500: Internal Server Error.";
+                errorHandler(exchange, response, 500);
             }
         }
 
@@ -329,15 +393,9 @@ public class HTTPServer {
         return referer;
     }
     private class POSTFileHandler implements HttpHandler {
-        public void handle(HttpExchange exchange) throws IOException {
-            Headers header = exchange.getRequestHeaders();
-
-            int contentLength = Integer.parseInt(header.getFirst("Content-Length"));
-            if(contentLength>limitSize){
-                String response = "Error 413: Payload Too Large";
-                errorHandler(exchange,response, 413);
-            }
-            else {
+        public void handle(HttpExchange exchange){
+            try{
+                Headers header = exchange.getRequestHeaders();
                 String referer = header.getFirst("Referer");
                 referer = getURLFromRequest(referer);
                 String receivedInput = "";
@@ -353,7 +411,11 @@ public class HTTPServer {
                 fileName = fileName.replaceAll("\"", "");
                 parts = parts[1].split("------", 2);
                 String payload = parts[0];
+                if (receivedInput.length() > limitSize) {
+                    throw new Exception();
+                }
 
+                System.out.println(currentFolder);
                 File file = new File(currentFolder + fileName);
                 FileOutputStream f_output = new FileOutputStream(file);
                 f_output.write(payload.getBytes("ISO-8859-1"));
@@ -362,22 +424,23 @@ public class HTTPServer {
                 String fileSize = fileSize(payload.length());
                 System.out.println("Client posted: " + fileName + ", size: " + fileSize);
 
-                htmlHandler(exchange, htmlSPA);
-
                 server.createContext(referer + fileName, new GETFileHandler(fileName));
+                server.createContext(referer + file.getName() + "/deletefile", new DELETEFileHandler(fileName));
+                htmlHandler(exchange, htmlSPA);
+                }catch (Exception e){
+                String response = "Error 413: Payload to Large";
+                errorHandler(exchange, response, 413);
             }
         }
-
-
-
-
     }
-    private class DELETEFileHandler implements HttpHandler {
-        private final String name;
-        public DELETEFileHandler(String name) {
-            this.name = name;
-        }
-        public void handle(HttpExchange exchange) throws IOException {
+
+private class DELETEFileHandler implements HttpHandler {
+    private final String name;
+    public DELETEFileHandler(String name) {
+        this.name = name;
+    }
+    public void handle(HttpExchange exchange) {
+        try {
             System.out.println("[CLIENT REQUESTED REMOVAL OF FILE: "+name+"]");
             Headers header = exchange.getRequestHeaders();
             String referer = header.getFirst("Referer");
@@ -390,18 +453,22 @@ public class HTTPServer {
                 htmlHandler(exchange, htmlSPA);
             }
             else{
-                String response = "Error 404: File not found.";
-                errorHandler(exchange, response, 404);
+                throw new Exception();
             }
+        } catch (Exception e) {
+            String response = "Error 404: File not found.";
+            errorHandler(exchange, response, 404);
+        }
 
-        }
     }
-    private class DELETEFolderHandler implements HttpHandler {
-        private final String name;
-        public DELETEFolderHandler(String name) {
-            this.name = name;
-        }
-        public void handle(HttpExchange exchange) throws IOException {
+}
+private class DELETEFolderHandler implements HttpHandler {
+    private final String name;
+    public DELETEFolderHandler(String name) {
+        this.name = name;
+    }
+    public void handle(HttpExchange exchange){
+        try {
             System.out.println("[CLIENT REQUESTED REMOVAL OF FOLDER: "+name+"]");
             Headers header = exchange.getRequestHeaders();
             String referer = header.getFirst("Referer");
@@ -414,26 +481,28 @@ public class HTTPServer {
                 htmlHandler(exchange, htmlSPA);
             }
             else{
-                String response = "Error 404: Folder not found.";
-                errorHandler(exchange, response, 404);
+                throw new Exception();
             }
+        } catch (Exception e) {
+            String response = "Error 404: Folder not found.";
+            errorHandler(exchange, response, 404);
+        }
 
-        }
     }
-    private class ADDFolderHandler implements HttpHandler {
-        private final String name;
-        public ADDFolderHandler(String name) {
-            this.name = name;
-        }
-        public void handle(HttpExchange exchange) throws IOException {
-            System.out.println("[Client requested to add folder at: "+name+"]");
-            Headers header = exchange.getRequestHeaders();
-            File currentDir = new File (currentFolder);
-            if(!currentDir.exists()){
-                String response = "Error 500: Internal Server Error";
-                errorHandler(exchange,response, 500);
-            }
-            else {
+}
+private class ADDFolderHandler implements HttpHandler {
+    private final String name;
+    public ADDFolderHandler(String name) {
+        this.name = name;
+    }
+    public void handle(HttpExchange exchange){
+        System.out.println("[Client requested to add folder at: " + name + "]");
+        Headers header = exchange.getRequestHeaders();
+        File currentDir = new File(currentFolder);
+        try {
+            if (!currentDir.exists()) {
+                throw new IOException();
+            } else {
                 String referer = header.getFirst("Referer");
                 referer = getURLFromRequest(referer);
                 String receivedInput = "";
@@ -444,27 +513,32 @@ public class HTTPServer {
                 }
                 String parts[] = receivedInput.split("\r\n\r\n", 2);
                 parts = parts[1].split("------", 2);
-                String folderName = parts[0].substring(0, parts[0].length()-2);
-                File newDir = new File (currentFolder+"/"+folderName);
-                if(newDir.exists()){
-                    String response = "Error 403: Forbidden, Folder already exists";
-                    errorHandler(exchange,response, 500);
-                }
-                else {
+                String folderName = parts[0].substring(0, parts[0].length() - 2);
+                File newDir = new File(currentFolder + "/" + folderName);
+                if (!newDir.exists()) {
                     newDir.mkdir();
-                    System.out.println(currentFolder);
-                    System.out.println(folderName);
-                    server.createContext(referer + folderName, new SPAContextHandler(currentFolder, folderName));
+                    String tempURL = referer + folderName+"/";
+                    server.createContext(tempURL, new SPAContextHandler(currentFolder, folderName+"/"));
+                    server.createContext(tempURL + "download", new GETFolderHandler(folderName));
+                    server.createContext(tempURL + "upload", new POSTFileHandler());
+                    server.createContext(tempURL + "addfolder", new ADDFolderHandler(folderName));
+                    server.createContext(tempURL + "deletefolder", new DELETEFolderHandler(folderName));
                     htmlHandler(exchange, htmlSPA);
+
+                } else {
+                    throw new Exception();
                 }
             }
 
-
-
-
-
+        }catch (IOException e) {
+            String response = "Error 500: Internal Server Error";
+            errorHandler(exchange, response, 500);
+        } catch (Exception e) {
+            String response = "Error 403: Forbidden, Folder already exists";
+            errorHandler(exchange, response, 403);
         }
     }
+}
 
 
 }
