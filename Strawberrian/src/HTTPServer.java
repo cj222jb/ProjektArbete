@@ -271,7 +271,7 @@ public class HTTPServer {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            currentFolder= rootFolder+"/"+folderName;
+            currentFolder= rootFolder;//+"/"+folderName
             System.out.println(currentFolder);
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
