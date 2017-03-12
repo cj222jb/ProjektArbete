@@ -37,19 +37,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Authentication.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Authentication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Authentication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="45" column="68" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
+            <state relative-caret-position="170">
+              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
               <folding>
-                <marker date="1489305656032" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
+                <marker date="1489306231716" expanded="true" signature="741:766" ph="Select * fro... userBerrian" />
+                <marker date="1489306231716" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -113,8 +114,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/jsoup-1.10.2.jar!/org/jsoup/helper/DataUtil.class" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Authentication.java" />
         <option value="$PROJECT_DIR$/src/HTTPServer.java" />
+        <option value="$PROJECT_DIR$/src/Authentication.java" />
       </list>
     </option>
   </component>
@@ -667,12 +668,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486027874348</updated>
-      <workItem from="1488892283222" duration="18938000" />
+      <workItem from="1488892283222" duration="19416000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18938000" />
+    <option name="totallyTimeSpent" value="19416000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
@@ -845,16 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Authentication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="45" column="68" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
-          <folding>
-            <marker date="1489305656032" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Backup/ProjektArbete/Strawberrian/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2059">
@@ -882,6 +873,17 @@
             <element signature="e#18855#18856#0" expanded="true" />
             <element signature="e#19850#19851#0" expanded="true" />
             <element signature="e#19890#19891#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Authentication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding>
+            <marker date="1489306231716" expanded="true" signature="741:766" ph="Select * fro... userBerrian" />
+            <marker date="1489306231716" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
           </folding>
         </state>
       </provider>
