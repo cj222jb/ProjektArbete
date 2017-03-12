@@ -51,13 +51,14 @@
       <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
+            <state relative-caret-position="102">
+              <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
               <folding>
                 <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+                <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
                 <element signature="e#11444#11445#0" expanded="true" />
                 <element signature="e#11484#11485#0" expanded="true" />
                 <element signature="e#13293#13294#0" expanded="true" />
@@ -648,12 +649,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486027874348</updated>
-      <workItem from="1488892283222" duration="21304000" />
+      <workItem from="1488892283222" duration="21975000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21304000" />
+    <option name="totallyTimeSpent" value="21975000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
@@ -743,6 +744,7 @@
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="e#11444#11445#0" expanded="true" />
             <element signature="e#11484#11485#0" expanded="true" />
             <element signature="e#13293#13294#0" expanded="true" />
@@ -784,6 +786,7 @@
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="e#11444#11445#0" expanded="true" />
             <element signature="e#11484#11485#0" expanded="true" />
             <element signature="e#13293#13294#0" expanded="true" />
@@ -834,14 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Authentication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -853,15 +848,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
+        <state relative-caret-position="102">
+          <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
           <folding>
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
+            <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
             <element signature="e#11444#11445#0" expanded="true" />
             <element signature="e#11484#11485#0" expanded="true" />
             <element signature="e#13293#13294#0" expanded="true" />

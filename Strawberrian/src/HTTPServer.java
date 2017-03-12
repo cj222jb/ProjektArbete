@@ -65,7 +65,7 @@ public class HTTPServer {
         ArrayList<String> userNames = authenticate.getAll();
         this.rootFolder = rootFolder;
         System.out.println(rootFolder);
-        htmlSPA = new File (webFolder+"/dir.html");
+        htmlSPA = new File (webFolder+"/Dir.html");
         htmlIndex = new File(webFolder+"/index.html");
         System.out.println("[USER CONNECTED, ROOT FOLDER: "+rootFolder+"]");
 
