@@ -84,7 +84,8 @@ public class HTTPServer {
             }
         });
         displayUsersToHTML(userNames);
-        iterateFolders(rootFolder,"/"+user,"");
+
+        iterateFolders(rootFolder,"/"+user+"/","");
     }
     private void pushPictures() {
         File[] imgArr = fileDirectory = new File (webFolder+"/images").listFiles();
@@ -274,8 +275,10 @@ public class HTTPServer {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            currentFolder= rootFolder+"/"+folderName;
-            System.out.println(currentFolder);
+            if(!folderName.equals(""))
+                currentFolder = rootFolder + "/" + folderName;
+            else
+                currentFolder = rootFolder;
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
             htmlHandler(exchange, htmlSPA);
