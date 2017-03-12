@@ -51,26 +51,26 @@
       <file leaf-file-name="HTTPServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+            <state relative-caret-position="117">
+              <caret line="276" column="70" selection-start-line="276" selection-start-column="70" selection-end-line="276" selection-end-column="70" />
               <folding>
                 <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
                 <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
-                <element signature="e#11444#11445#0" expanded="true" />
-                <element signature="e#11484#11485#0" expanded="true" />
-                <element signature="e#13293#13294#0" expanded="true" />
-                <element signature="e#13333#13334#0" expanded="true" />
-                <element signature="e#14892#14893#0" expanded="true" />
-                <element signature="e#14940#14941#0" expanded="true" />
-                <element signature="e#17870#17871#0" expanded="true" />
-                <element signature="e#17910#17911#0" expanded="true" />
-                <element signature="e#18929#18930#0" expanded="true" />
-                <element signature="e#18969#18970#0" expanded="true" />
-                <element signature="e#19964#19965#0" expanded="true" />
-                <element signature="e#20004#20005#0" expanded="true" />
+                <element signature="e#11344#11345#0" expanded="true" />
+                <element signature="e#11384#11385#0" expanded="true" />
+                <element signature="e#13193#13194#0" expanded="true" />
+                <element signature="e#13233#13234#0" expanded="true" />
+                <element signature="e#14792#14793#0" expanded="true" />
+                <element signature="e#14840#14841#0" expanded="true" />
+                <element signature="e#17770#17771#0" expanded="true" />
+                <element signature="e#17810#17811#0" expanded="true" />
+                <element signature="e#18829#18830#0" expanded="true" />
+                <element signature="e#18869#18870#0" expanded="true" />
+                <element signature="e#19864#19865#0" expanded="true" />
+                <element signature="e#19904#19905#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -649,12 +649,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486027874348</updated>
-      <workItem from="1488892283222" duration="21975000" />
+      <workItem from="1488892283222" duration="22297000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21975000" />
+    <option name="totallyTimeSpent" value="22297000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
@@ -707,7 +707,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/HTTPServer.java</url>
-          <line>337</line>
+          <line>334</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -745,18 +745,18 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#11444#11445#0" expanded="true" />
-            <element signature="e#11484#11485#0" expanded="true" />
-            <element signature="e#13293#13294#0" expanded="true" />
-            <element signature="e#13333#13334#0" expanded="true" />
-            <element signature="e#14892#14893#0" expanded="true" />
-            <element signature="e#14940#14941#0" expanded="true" />
-            <element signature="e#17870#17871#0" expanded="true" />
-            <element signature="e#17910#17911#0" expanded="true" />
-            <element signature="e#18929#18930#0" expanded="true" />
-            <element signature="e#18969#18970#0" expanded="true" />
-            <element signature="e#19964#19965#0" expanded="true" />
-            <element signature="e#20004#20005#0" expanded="true" />
+            <element signature="e#11344#11345#0" expanded="true" />
+            <element signature="e#11384#11385#0" expanded="true" />
+            <element signature="e#13193#13194#0" expanded="true" />
+            <element signature="e#13233#13234#0" expanded="true" />
+            <element signature="e#14792#14793#0" expanded="true" />
+            <element signature="e#14840#14841#0" expanded="true" />
+            <element signature="e#17770#17771#0" expanded="true" />
+            <element signature="e#17810#17811#0" expanded="true" />
+            <element signature="e#18829#18830#0" expanded="true" />
+            <element signature="e#18869#18870#0" expanded="true" />
+            <element signature="e#19864#19865#0" expanded="true" />
+            <element signature="e#19904#19905#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -787,18 +787,18 @@
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#11444#11445#0" expanded="true" />
-            <element signature="e#11484#11485#0" expanded="true" />
-            <element signature="e#13293#13294#0" expanded="true" />
-            <element signature="e#13333#13334#0" expanded="true" />
-            <element signature="e#14892#14893#0" expanded="true" />
-            <element signature="e#14940#14941#0" expanded="true" />
-            <element signature="e#17870#17871#0" expanded="true" />
-            <element signature="e#17910#17911#0" expanded="true" />
-            <element signature="e#18929#18930#0" expanded="true" />
-            <element signature="e#18969#18970#0" expanded="true" />
-            <element signature="e#19964#19965#0" expanded="true" />
-            <element signature="e#20004#20005#0" expanded="true" />
+            <element signature="e#11344#11345#0" expanded="true" />
+            <element signature="e#11384#11385#0" expanded="true" />
+            <element signature="e#13193#13194#0" expanded="true" />
+            <element signature="e#13233#13234#0" expanded="true" />
+            <element signature="e#14792#14793#0" expanded="true" />
+            <element signature="e#14840#14841#0" expanded="true" />
+            <element signature="e#17770#17771#0" expanded="true" />
+            <element signature="e#17810#17811#0" expanded="true" />
+            <element signature="e#18829#18830#0" expanded="true" />
+            <element signature="e#18869#18870#0" expanded="true" />
+            <element signature="e#19864#19865#0" expanded="true" />
+            <element signature="e#19904#19905#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -858,26 +858,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HTTPServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+        <state relative-caret-position="117">
+          <caret line="276" column="70" selection-start-line="276" selection-start-column="70" selection-end-line="276" selection-end-column="70" />
           <folding>
             <element signature="method#addFileDirToHTML#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#fileSize#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#zipFolder#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#deleteDir#0;class#HTTPServer#0" expanded="false" />
             <element signature="method#errorHandler#0;class#HTTPServer#0" expanded="false" />
-            <element signature="e#11444#11445#0" expanded="true" />
-            <element signature="e#11484#11485#0" expanded="true" />
-            <element signature="e#13293#13294#0" expanded="true" />
-            <element signature="e#13333#13334#0" expanded="true" />
-            <element signature="e#14892#14893#0" expanded="true" />
-            <element signature="e#14940#14941#0" expanded="true" />
-            <element signature="e#17870#17871#0" expanded="true" />
-            <element signature="e#17910#17911#0" expanded="true" />
-            <element signature="e#18929#18930#0" expanded="true" />
-            <element signature="e#18969#18970#0" expanded="true" />
-            <element signature="e#19964#19965#0" expanded="true" />
-            <element signature="e#20004#20005#0" expanded="true" />
+            <element signature="e#11344#11345#0" expanded="true" />
+            <element signature="e#11384#11385#0" expanded="true" />
+            <element signature="e#13193#13194#0" expanded="true" />
+            <element signature="e#13233#13234#0" expanded="true" />
+            <element signature="e#14792#14793#0" expanded="true" />
+            <element signature="e#14840#14841#0" expanded="true" />
+            <element signature="e#17770#17771#0" expanded="true" />
+            <element signature="e#17810#17811#0" expanded="true" />
+            <element signature="e#18829#18830#0" expanded="true" />
+            <element signature="e#18869#18870#0" expanded="true" />
+            <element signature="e#19864#19865#0" expanded="true" />
+            <element signature="e#19904#19905#0" expanded="true" />
           </folding>
         </state>
       </provider>
