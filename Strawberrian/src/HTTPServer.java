@@ -79,11 +79,11 @@ public class HTTPServer {
         hc1.setAuthenticator(new BasicAuthenticator(user) {
             @Override
             public boolean checkCredentials(String user, String pwd) {
-                return user.equals(user) && pwd.equals(authenticate.getUserInformation(user)[1]);
+                return user.equals(authenticate.getUserInformation(user)[0]) && pwd.equals(authenticate.getUserInformation(user)[1]);
             }
         });
         displayUsersToHTML(userNames);
-        iterateFolders(rootFolder,"/"+user+"/","");
+        iterateFolders(rootFolder,"/"+user,"");
     }
     private void pushPictures() {
         File[] imgArr = fileDirectory = new File (webFolder+"/images").listFiles();
@@ -271,7 +271,7 @@ public class HTTPServer {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            currentFolder= rootFolder;//+"/"+folderName
+            currentFolder= rootFolder+"/"+folderName;
             System.out.println(currentFolder);
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
