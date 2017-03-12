@@ -123,7 +123,7 @@ public class HTTPServer {
                 iterateFolders(rootFolder,folderURL,folder);
             }
             else {
-                server.createContext(folderURL+nextURL+file.getName(), new GETFileHandler(file.getName()));
+                server.createContext(folderURL+nextURL+file.getName(), new GETFileHandler(file.getName(), rootFolder+"/"+nextURL));
                 server.createContext(folderURL+nextURL+file.getName()+"/deletefile", new DELETEFileHandler(file.getName()));
             }
         }
@@ -284,8 +284,10 @@ public class HTTPServer {
     }
     private class GETFileHandler implements HttpHandler {
         private final String name;
-        public GETFileHandler(String name) {
+        private final String currentFolder;
+        public GETFileHandler(String name, String currentFolder) {
             this.name = name;
+            this.currentFolder = currentFolder;
         }
         public void handle(HttpExchange exchange) throws IOException {
             System.out.println("Client requested: "+ currentFolder+name);
@@ -428,7 +430,7 @@ public class HTTPServer {
                 String fileSize = fileSize(payload.length());
                 System.out.println("Client posted: " + fileName + ", size: " + fileSize);
 
-                server.createContext(referer + fileName, new GETFileHandler(fileName));
+                server.createContext(referer + fileName, new GETFileHandler(fileName, currentFolder));
                 server.createContext(referer + file.getName() + "/deletefile", new DELETEFileHandler(fileName));
                 htmlHandler(exchange, htmlSPA);
             }catch (Exception e){
