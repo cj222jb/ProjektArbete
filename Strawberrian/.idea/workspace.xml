@@ -25,7 +25,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -35,14 +35,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Authentication.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Authentication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Authentication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            <state relative-caret-position="238">
+              <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
               <folding>
-                <marker date="1489307658486" expanded="true" signature="741:766" ph="Select * fro... userBerrian" />
-                <marker date="1489307658486" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
+                <marker date="1489307747997" expanded="true" signature="741:766" ph="Select * fro... userBerrian" />
+                <marker date="1489307747997" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
               </folding>
             </state>
           </provider>
@@ -94,8 +94,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/jsoup-1.10.2.jar!/org/jsoup/helper/DataUtil.class" />
         <option value="$PROJECT_DIR$/src/HTTPServer.java" />
-        <option value="$PROJECT_DIR$/src/Authentication.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Authentication.java" />
       </list>
     </option>
   </component>
@@ -648,12 +648,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486027874348</updated>
-      <workItem from="1488892283222" duration="20835000" />
+      <workItem from="1488892283222" duration="20911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20835000" />
+    <option name="totallyTimeSpent" value="20911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
@@ -859,22 +859,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Authentication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding>
-            <marker date="1489307658486" expanded="true" signature="741:766" ph="Select * fro... userBerrian" />
-            <marker date="1489307658486" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Authentication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+          <folding>
+            <marker date="1489307747997" expanded="true" signature="741:766" ph="Select * fro... userBerrian" />
+            <marker date="1489307747997" expanded="true" signature="1704:1763" ph="Select * fro... userBerrian" />
+          </folding>
         </state>
       </provider>
     </entry>

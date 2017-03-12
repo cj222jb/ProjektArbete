@@ -42,8 +42,8 @@ private static Statement stmt = null;
         String root = "";
         try{
             Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:/home/Gooseberrian/ProjektArbete/Strawberrian/users.db");
-            c = DriverManager.getConnection("jdbc:sqlite:users.db");
+            c = DriverManager.getConnection("jdbc:sqlite:/home/Gooseberrian/ProjektArbete/Strawberrian/users.db");
+//            c = DriverManager.getConnection("jdbc:sqlite:users.db");
             c.setAutoCommit(false);
             System.out.println("Successfully opened DB");
 
