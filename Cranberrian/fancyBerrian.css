@@ -159,6 +159,24 @@ a:hover{
     border-color: #303030;
     cursor: pointer;
 }
+.userLi{
+  text-align: center;
+    border: none;
+}
+.userLi a{
+    height: 80px;
+    font-size: 30px;
+    line-height: 80px;
+    color:white;
+    background-color: #424344;
+    margin-top: 10px;
+    padding-top: 10px;
+    width: 80%;
+    border-radius: 10px;
+}
+.userLi a:hover{
+    background:#303030;
+}
 footer{
     opacity: 0.6;
     font-size: 20px;

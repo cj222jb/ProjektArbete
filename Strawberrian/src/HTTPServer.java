@@ -43,7 +43,8 @@ public class HTTPServer {
             ArrayList<String> userList = authenticate.getAll();
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("[SERVER UP, RUNNING ON PORT: "+port+"]");
-            server.createContext("/js", new StaticFileHandler("/scriptBerrian.js"));
+            server.createContext("/SPAjs", new StaticFileHandler("/SPABerrian.js"));
+            server.createContext("/indexjs", new StaticFileHandler("/indexBerrian.js"));
             server.createContext("/css", new StaticFileHandler("/fancyBerrian.css"));
             pushPictures();
             server.setExecutor(null); // creates a default executor
@@ -96,9 +97,12 @@ public class HTTPServer {
         Element userContent = doc.getElementById("userDiv");
         userContent.empty();
         for (String userName : userNames) {
+            Element li = doc.createElement("li");
             Element aTag = doc.createElement("a");
+            li.attr("class","userLi");
             aTag.append(userName);
-            userContent.appendChild(aTag);
+            li.appendChild(aTag);
+            userContent.appendChild(li);
         }
         PrintWriter out = new PrintWriter(new FileWriter(htmlIndex));
         out.print(doc);
@@ -109,7 +113,6 @@ public class HTTPServer {
         String folder ;
         for (File file : fileArr) {
             if (file.isDirectory()) {
-
                 folder = nextURL+file.getName()+"/";
                 server.createContext(folderURL+folder, new SPAContextHandler(rootFolder,folder));
                 server.createContext(folderURL+folder + "download", new GETFolderHandler(file.getName()));
@@ -271,7 +274,7 @@ public class HTTPServer {
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            currentFolder= rootFolder;//+"/"+folderName
+            currentFolder= rootFolder+"/"+folderName;
             System.out.println(currentFolder);
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
@@ -427,118 +430,118 @@ public class HTTPServer {
                 server.createContext(referer + fileName, new GETFileHandler(fileName));
                 server.createContext(referer + file.getName() + "/deletefile", new DELETEFileHandler(fileName));
                 htmlHandler(exchange, htmlSPA);
-                }catch (Exception e){
+            }catch (Exception e){
                 String response = "Error 413: Payload to Large";
                 errorHandler(exchange, response, 413);
             }
         }
     }
 
-private class DELETEFileHandler implements HttpHandler {
-    private final String name;
-    public DELETEFileHandler(String name) {
-        this.name = name;
-    }
-    public void handle(HttpExchange exchange) {
-        try {
-            System.out.println("[CLIENT REQUESTED REMOVAL OF FILE: "+name+"]");
-            Headers header = exchange.getRequestHeaders();
-            String referer = header.getFirst("Referer");
-
-            File file = new File (currentFolder+name);
-            if(file.exists()){
-                referer = getURLFromRequest(referer);
-                server.removeContext(referer+file.getName());
-                file.delete();
-                htmlHandler(exchange, htmlSPA);
-            }
-            else{
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            String response = "Error 404: File not found.";
-            errorHandler(exchange, response, 404);
+    private class DELETEFileHandler implements HttpHandler {
+        private final String name;
+        public DELETEFileHandler(String name) {
+            this.name = name;
         }
-
-    }
-}
-private class DELETEFolderHandler implements HttpHandler {
-    private final String name;
-    public DELETEFolderHandler(String name) {
-        this.name = name;
-    }
-    public void handle(HttpExchange exchange){
-        try {
-            System.out.println("[CLIENT REQUESTED REMOVAL OF FOLDER: "+name+"]");
-            Headers header = exchange.getRequestHeaders();
-            String referer = header.getFirst("Referer");
-
-            File dir = new File (currentFolder);
-            if(dir.exists()){
-                referer = getURLFromRequest(referer);
-                server.removeContext(referer);
-                deleteDir(dir);
-                htmlHandler(exchange, htmlSPA);
-            }
-            else{
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            String response = "Error 404: Folder not found.";
-            errorHandler(exchange, response, 404);
-        }
-
-    }
-}
-private class ADDFolderHandler implements HttpHandler {
-    private final String name;
-    public ADDFolderHandler(String name) {
-        this.name = name;
-    }
-    public void handle(HttpExchange exchange){
-        System.out.println("[Client requested to add folder at: " + name + "]");
-        Headers header = exchange.getRequestHeaders();
-        File currentDir = new File(currentFolder);
-        try {
-            if (!currentDir.exists()) {
-                throw new IOException();
-            } else {
+        public void handle(HttpExchange exchange) {
+            try {
+                System.out.println("[CLIENT REQUESTED REMOVAL OF FILE: "+name+"]");
+                Headers header = exchange.getRequestHeaders();
                 String referer = header.getFirst("Referer");
-                referer = getURLFromRequest(referer);
-                String receivedInput = "";
-                final byte[] buffer = new byte[6000];
-                int count;
-                while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
-                    receivedInput += new String(buffer, 0, count, "ISO-8859-1");
-                }
-                String parts[] = receivedInput.split("\r\n\r\n", 2);
-                parts = parts[1].split("------", 2);
-                String folderName = parts[0].substring(0, parts[0].length() - 2);
-                File newDir = new File(currentFolder + "/" + folderName);
-                if (!newDir.exists()) {
-                    newDir.mkdir();
-                    String tempURL = referer + folderName+"/";
-                    server.createContext(tempURL, new SPAContextHandler(currentFolder, folderName+"/"));
-                    server.createContext(tempURL + "download", new GETFolderHandler(folderName));
-                    server.createContext(tempURL + "upload", new POSTFileHandler());
-                    server.createContext(tempURL + "addfolder", new ADDFolderHandler(folderName));
-                    server.createContext(tempURL + "deletefolder", new DELETEFolderHandler(folderName));
-                    htmlHandler(exchange, htmlSPA);
 
-                } else {
+                File file = new File (currentFolder+name);
+                if(file.exists()){
+                    referer = getURLFromRequest(referer);
+                    server.removeContext(referer+file.getName());
+                    file.delete();
+                    htmlHandler(exchange, htmlSPA);
+                }
+                else{
                     throw new Exception();
                 }
+            } catch (Exception e) {
+                String response = "Error 404: File not found.";
+                errorHandler(exchange, response, 404);
             }
 
-        }catch (IOException e) {
-            String response = "Error 500: Internal Server Error";
-            errorHandler(exchange, response, 500);
-        } catch (Exception e) {
-            String response = "Error 403: Forbidden, Folder already exists";
-            errorHandler(exchange, response, 403);
         }
     }
-}
+    private class DELETEFolderHandler implements HttpHandler {
+        private final String name;
+        public DELETEFolderHandler(String name) {
+            this.name = name;
+        }
+        public void handle(HttpExchange exchange){
+            try {
+                System.out.println("[CLIENT REQUESTED REMOVAL OF FOLDER: "+name+"]");
+                Headers header = exchange.getRequestHeaders();
+                String referer = header.getFirst("Referer");
+
+                File dir = new File (currentFolder);
+                if(dir.exists()){
+                    referer = getURLFromRequest(referer);
+                    server.removeContext(referer);
+                    deleteDir(dir);
+                    htmlHandler(exchange, htmlSPA);
+                }
+                else{
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                String response = "Error 404: Folder not found.";
+                errorHandler(exchange, response, 404);
+            }
+
+        }
+    }
+    private class ADDFolderHandler implements HttpHandler {
+        private final String name;
+        public ADDFolderHandler(String name) {
+            this.name = name;
+        }
+        public void handle(HttpExchange exchange){
+            System.out.println("[Client requested to add folder at: " + name + "]");
+            Headers header = exchange.getRequestHeaders();
+            File currentDir = new File(currentFolder);
+            try {
+                if (!currentDir.exists()) {
+                    throw new IOException();
+                } else {
+                    String referer = header.getFirst("Referer");
+                    referer = getURLFromRequest(referer);
+                    String receivedInput = "";
+                    final byte[] buffer = new byte[6000];
+                    int count;
+                    while ((count = exchange.getRequestBody().read(buffer)) >= 0) {
+                        receivedInput += new String(buffer, 0, count, "ISO-8859-1");
+                    }
+                    String parts[] = receivedInput.split("\r\n\r\n", 2);
+                    parts = parts[1].split("------", 2);
+                    String folderName = parts[0].substring(0, parts[0].length() - 2);
+                    File newDir = new File(currentFolder + "/" + folderName);
+                    if (!newDir.exists()) {
+                        newDir.mkdir();
+                        String tempURL = referer + folderName+"/";
+                        server.createContext(tempURL, new SPAContextHandler(currentFolder, folderName+"/"));
+                        server.createContext(tempURL + "download", new GETFolderHandler(folderName));
+                        server.createContext(tempURL + "upload", new POSTFileHandler());
+                        server.createContext(tempURL + "addfolder", new ADDFolderHandler(folderName));
+                        server.createContext(tempURL + "deletefolder", new DELETEFolderHandler(folderName));
+                        htmlHandler(exchange, htmlSPA);
+
+                    } else {
+                        throw new Exception();
+                    }
+                }
+
+            }catch (IOException e) {
+                String response = "Error 500: Internal Server Error";
+                errorHandler(exchange, response, 500);
+            } catch (Exception e) {
+                String response = "Error 403: Forbidden, Folder already exists";
+                errorHandler(exchange, response, 403);
+            }
+        }
+    }
 
 
 }
