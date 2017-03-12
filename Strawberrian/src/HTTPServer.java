@@ -279,6 +279,7 @@ public class HTTPServer {
                 currentFolder = rootFolder + "/" + folderName;
             else
                 currentFolder = rootFolder;
+            System.out.println(currentFolder);
             fileDirectory = new File (currentFolder).listFiles();
             addFileDirToHTML(fileDirectory);
             htmlHandler(exchange, htmlSPA);
