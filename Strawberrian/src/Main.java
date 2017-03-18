@@ -1,14 +1,11 @@
 public class Main {
 
     public static void main(String[] args) {
-        Authentication authenticate = new Authentication();
+        DBHandler authenticate = new DBHandler();
 
-        HTTPServer webBerrian = new HTTPServer("/home/Gooseberrian/ProjektArbete/Cranberrian","/home/Gooseberrian/ProjektArbete/root/", 8080);
-
-
-//        HTTPServer webBerrian = new HTTPServer( "C:\\Users\\carl\\Documents\\GitHub\\2dt301\\ProjektArbete\\Cranberrian\\","C:\\Users\\carl\\Documents\\GitHub\\2dt301\\ProjektArbete\\root\\",8081);
-//        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\MikaelA", "MikaelA" );
-//        webBerrian.run("C:\\Users\\Mikael Andersson\\Documents\\TEMPMAP\\DanskeS", "DanskeS" );
+//        HTTPServer webBerrian = new HTTPServer("/home/Gooseberrian/ProjektArbete/Cranberrian","/home/Gooseberrian/ProjektArbete/root/", 8080);
+        HTTPServer webBerrian = new HTTPServer("/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/Cranberrian",
+                "/Users/mikaelandersson/Documents/Skolarbeten/Projekt_Datorteknik/ProjektArbete/root/", 8888);
 
     }
 }

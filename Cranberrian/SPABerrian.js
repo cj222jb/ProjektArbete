@@ -33,7 +33,6 @@ function run() {
     DELETEFileHandler();
     deleteFileListener();
     ADDFolderHandler();
-   // addFolderListener();
 }
 function addDeleteFolderButton() {
 
@@ -53,11 +52,11 @@ function addDeleteFolderButton() {
 
 }
 function filesListener() {
-    files.childNodes.forEach(function(file){
-        var aTag = file.childNodes[2];
+    files.childNodes.forEach(function(file){            //Iterates over all files in directory
+        var aTag = file.childNodes[2];                  //Retrieves filename
         if(aTag != null){
             aTag.addEventListener("click",function () {
-                window.location.href =url+aTag.innerHTML;
+                window.location.href =url+aTag.innerHTML;  //If user clicks link, get request for file is sent to server.
             });
         }
     });
@@ -161,11 +160,6 @@ function deleteFolderListener() {
         if (result) {
             window.location.href =url+"deletefolder";
         }
-    });
-}
-function addFolderListener() {
-    addFolder.addEventListener("click",function () {
-            window.location.href =url+"addfolder";
     });
 }
 
