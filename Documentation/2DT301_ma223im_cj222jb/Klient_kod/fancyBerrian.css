@@ -1,0 +1,234 @@
+
+html{
+    background: url("/images/background.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    -webkit-user-select: none;
+    font-size: 20px;
+}
+header{
+    background: url("/images/logo2.png") no-repeat center center;
+    height: 190px;
+    width: 150px;
+    background-size: cover;
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    z-index: 2;
+}
+
+main{
+    overflow: hidden;
+    min-height: 1080px;
+    min-width: 750px;
+    width:60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5%;
+    background:#F4F3F0;
+    border: solid 2px #424344;
+    border-radius: 10px;
+}
+
+#mainHeader{
+    font-size: 50px;
+    padding-left: 10px;
+}
+#folders {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#files {
+    padding-left: 42px;
+    padding-right: 10px;
+    padding-bottom: 50px;
+}
+li{
+    border-bottom: groove 1px #424344;
+    list-style: none;
+}
+a{
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#files a{
+    width: 80%;
+    margin-left: 12px;
+}
+#folders a{
+    margin-left: 12px;
+}
+a:hover{
+    transition-duration: 0.2s;
+    color:#9EAFC9;
+    border-color: #303030;
+    cursor: pointer;
+}
+
+#folders li{
+    padding-left: 32px;
+    height: 70px;
+    line-height: 70px;
+
+}
+#upDirectory{
+    background: url('/images/folder_up_32.png') no-repeat left;
+}
+.folder{
+    background: url('/images/folder_32.png') no-repeat left;
+}
+#files li{
+
+    height: 50px;
+    line-height: 50px;
+}
+.deleteFile {
+    float:right;
+    text-align: center;
+    width: 32px;
+    display:inline-block;
+    height: 32px;
+    margin-top: 16px;
+    background: url('/images/delete.png') no-repeat;
+}
+.fileSize{
+    font-weight: bold;
+    font-size: 15px;
+    width:80px;
+    overflow:hidden;
+    display:inline-block;
+
+}
+.optionBar {
+    margin: 10px 10px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.optionBar li{
+    float:left;
+    padding-right: 10px;
+    font-size: 18px;
+    line-height: 24px;
+    border-bottom: none;
+}
+
+.optionBar a{
+    overflow: visible;
+}
+#downloadFolder{
+    padding-left: 29px;
+    background: url('/images/folder_download_24.png') no-repeat left;
+}
+#deleteFolder{
+    padding-left: 29px;
+    background: url('/images/folder_delete_24.png') no-repeat left;
+}
+#addFolder{
+    padding-left: 29px;
+    background: url('/images/folder_add_24.png') no-repeat left;
+}
+#chooseFile{
+    float: right;
+    padding-left: 20px;
+    background: url('/images/upload.png') no-repeat left;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    overflow: hidden;
+    background-color: black;
+    display: inline-block;
+}
+.inputfile +label:hover{
+    transition-duration: 0.2s;
+    color:#9EAFC9;
+    border-color: #303030;
+    cursor: pointer;
+}
+.userLi{
+  text-align: center;
+    border: none;
+}
+.userLi a{
+    height: 80px;
+    font-size: 30px;
+    line-height: 80px;
+    color:white;
+    background-color: #424344;
+    margin-top: 10px;
+    padding-top: 10px;
+    width: 80%;
+    border-radius: 10px;
+}
+.userLi a:hover{
+    background:#303030;
+}
+footer{
+    opacity: 0.6;
+    font-size: 20px;
+    color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    word-break: keep-all;
+    max-width: 16%;
+    z-index: -1;
+}
+
+
+
+@media only screen and (max-width:1080px) {
+    body{
+        font-size: 35px
+    }
+    /*#padTop{*/
+        /*position: fixed;*/
+        /*top:0;*/
+        /*left:0;*/
+        /*width: 100%;*/
+        /*height: 260px;*/
+        /*z-index: 1;*/
+        /*background: url("/images/background2.jpg")  center top;*/
+    /*}*/
+    main{
+        width:98%;
+        min-height: 780px;
+        margin: 260px 1% 80px;
+    }
+    #folders li{
+        height: 80px;
+        line-height: 80px;
+    }
+    #upDirectory li{
+        height: 80px;
+        line-height: 80px;
+    }
+    #files li{
+        height: 60px;
+        line-height: 60px;
+    }
+    footer{
+        right:2%;
+        align: center;
+        max-width: 100%;
+        word-break: keep-all;
+    }
+    .deleteFile{
+        margin-top: 15px;
+    }
+
+
+}
