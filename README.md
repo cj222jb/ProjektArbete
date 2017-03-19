@@ -25,10 +25,13 @@ Code for client-side is includen in the filepath:
   https://github.com/cj222jb/ProjektArbete/tree/master/Cranberrian
   
   -Dir.html & index.html
+  
     HTML code for clientside, contains content for webpage
   
   -fancyBerrian.css
+  
     Styling for all html content
   
   -SPABerrian.js & indexBerrian.js
+  
     Functionality for all html content
